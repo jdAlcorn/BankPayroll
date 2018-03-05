@@ -8,6 +8,13 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {AppSettings} from "../app/app.config";
 
 
+interface LoginResponse {
+  id: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  token: string
+}
 
 @Injectable()
 export class AuthService {
@@ -15,17 +22,15 @@ export class AuthService {
 
   constructor(public events: Events, private http: HttpClient){};
 
+
+
   public login(credentials) {
     // Make the Http request and map the response so we can initialize our user object and extract the token
-    return this.http.post(AppSettings.API_ENDPOINT + "/authentication/login", { email: credentials.email, password: credentials.password } )
-      .map( (response: Response) =>  {
-        console.log("response");
-        if( response.status == 200 ) {
-          // Initialize our user and call the login event with their auth token TODO: Actually parse the response and set the users data accordingly
-          this.currentUser = new User( 'test@asd.com', 'first', 'last' );
-          this.events.publish("user:login", "SOME TOKEN HERE");
-          return true;
-        } else return false;
+    return this.http.post<LoginResponse>(AppSettings.API_ENDPOINT + "/authentication/login", { email: credentials.email, password: credentials.password } )
+      .map( loginReponse =>  {
+          // Initialize our user and call the login event with their auth token
+          this.currentUser = new User( loginReponse.email, loginReponse.firstName, loginReponse.lastName );
+          this.events.publish("user:login", loginReponse.token);
       })
   }
 

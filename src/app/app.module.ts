@@ -12,22 +12,25 @@ import { TokenInterceptor } from '../providers/http-service';
 
 import { MyApp } from './app.component';
 import {LoginPage} from "../pages/login/login";
+import {HomePage} from "../pages/home/home";
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage
-
+    LoginPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicPageModule.forChild(LoginPage)
+    IonicPageModule.forChild(LoginPage),
+    IonicPageModule.forChild(HomePage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     LoginPage
   ],
   providers: [

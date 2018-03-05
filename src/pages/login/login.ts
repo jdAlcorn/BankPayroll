@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import 'rxjs/add/operator/catch';
+import {HttpErrorResponse} from "@angular/common/http";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-login',
@@ -13,27 +15,25 @@ export class LoginPage {
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
 
-  public createAccount() {
-    this.nav.push('RegisterPage');
-  }
+  // public createAccount() {
+  //   this.nav.push('RegisterPage');
+  // }
 
   public login() {
     this.showLoading();
 
     this.auth.login(this.registerCredentials).subscribe(
-  ( loginAccepted ) => {
-          if ( loginAccepted ) {
-            this.nav.setRoot('HomePage');
-          } else {
-            this.showError("Access Denied");
-          }
+  ( result ) => {
+          // Credentials accepted, user has been authenticated
+          this.nav.setRoot(HomePage);
        },
-      ( err ) => {
-          this.showError("An error has occurred: ");
+      ( err: HttpErrorResponse ) => {
+          if( err.status == 401 ) // Login credentials rejected
+            this.showError("Access Denied");
+          else // Some other error
+            this.showError("An error has occurred: " + err.statusText);
        }
-
      )
-
   }
 
   showLoading() {
