@@ -1,5 +1,10 @@
-/*RESET*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;} body {line-height: 1;}ol, ul{list-style:none;} blockquote, q{quotes:none;} blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;} :focus{outline:0;} ins{text-decoration:none;} del{text-decoration:line-through;} table{border-collapse:collapse; border-spacing:0;}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td 
+{margin:0; padding:0; border:0; outline:0; font-size:100%; 
+	vertical-align:baseline; background:transparent;} 
+	body {line-height: 1;}ol, ul{list-style:none;} 
+	blockquote, q{quotes:none;} 
+	blockquote:before, blockquote:after, q:before, q:after{content:'';content:none;} :focus{outline:0;} ins{text-decoration:none;} del{text-decoration:line-through;} table{border-collapse:collapse; border-spacing:0;}
 
 /*MAIN*/
 body { 
@@ -26,7 +31,7 @@ a:hover {
 
 img {
 
-	width: 100%;
+	width: 20%;
 
 }
 
@@ -45,19 +50,24 @@ header {
 
 #logo{
 
-	margin: 20px;
-	float: left;
-	width: 200px;
-	height: 40px;
-	background: url(../assets/img/logo.png) no-repeat center;
-	display: block;
+	width: 50px;
+        height: 50px;
+		margin: 20px auto 0;
+		float: left;
+        border-radius: 10%;
+        background: url("../assets/imgs/logo.png") no-repeat left;
+		background-size: 100%;
+		display: block;
+
+	
 
 }
 
-nav {
+ion-navbar {
 
-	float: right;
-	padding: 20px;	
+	float: left;
+	padding: 20px;
+	
 	
 }
 
@@ -66,7 +76,7 @@ nav {
 	display: hidden;
 	width: 40px;
 	height: 40px;
-	background: #4C8FEC url(../assets/img/menu-icon.png) center;
+	background: #4C8FEC url("../assets/imgs/menu-icon.png") top;
 
 }
 
@@ -87,7 +97,9 @@ li {
 
 	display: inline-block;
 	float: left;
-	padding: 10px
+	padding: 10px;
+	margin-top: 25px;
+	
 
 }
 
@@ -137,7 +149,7 @@ p {
 
 	}
 
-	nav ul, nav:active ul { 
+	ion-navbar ul, ion-navbar:active ul { 
 
 		display: none;
 		position: absolute;
@@ -151,7 +163,7 @@ p {
 
 	}
 
-	nav li {
+	ion-navbar li {
 
 		text-align: center;
 		width: 100%;
@@ -160,7 +172,7 @@ p {
 
 	}
 
-	nav:hover ul {
+	ion-navbar:hover ul {
 
 		display: block;
 
