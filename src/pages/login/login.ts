@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, IonicPage, NavParams } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import 'rxjs/add/operator/catch';
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomePage} from "../home/home";
+import {TestPage} from "../test/test";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-login',
@@ -13,11 +15,14 @@ export class LoginPage {
   loading: Loading;
   registerCredentials = { email: '', password: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams) { 
+   
+  }
 
-  // public createAccount() {
-  //   this.nav.push('RegisterPage');
-  // }
+  public goTo(pageName) {
+    console.log(pageName);
+    //this.nav.push(pageName);
+   }
 
   public login() {
     this.showLoading();

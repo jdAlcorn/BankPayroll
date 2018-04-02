@@ -13,11 +13,13 @@ import { TokenInterceptor } from '../providers/http-service';
 import { MyApp } from './app.component';
 import {LoginPage} from "../pages/login/login";
 import {HomePage} from "../pages/home/home";
+import {TestPage} from "../pages/test/test";
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
+    TestPage,
     HomePage
   ],
   imports: [
@@ -31,6 +33,7 @@ import {HomePage} from "../pages/home/home";
   entryComponents: [
     MyApp,
     HomePage,
+    TestPage,
     LoginPage
   ],
   providers: [
