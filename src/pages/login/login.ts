@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import {HttpErrorResponse} from "@angular/common/http";
 import {HomePage} from "../home/home";
 import {TestPage} from "../test/test";
-import {TabsPage} from "../tabs/tabs";
+import {Bridge} from "./../../providers/bridge";
 
 @Component({
   selector: 'page-login',
@@ -13,16 +13,12 @@ import {TabsPage} from "../tabs/tabs";
 })
 export class LoginPage {
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: 'blah@test.com', password: 'test123123' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams) { 
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams, private bridge: Bridge) { 
    
   }
 
-  public goTo(pageName) {
-    console.log(pageName);
-    //this.nav.push(pageName);
-   }
 
   public login() {
     this.showLoading();

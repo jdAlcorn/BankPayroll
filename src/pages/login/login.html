@@ -7,8 +7,8 @@
  <ion-menu [content]="menu">
     <ion-content>
       <ion-list>
-        <button ion-button (click)='goTo(MenuPage);'>Menu</button>
-        <button ion-button (click)='goTo(TestPage);'>Another Link</button>
+        <button ion-button (click)='getInfo();'>Menu</button>
+        <button ion-button (click)='goTo(this);'>Another Link</button>
         <button ion-button (click)="goTo(menu);">Something Else</button>
         <button ion-button (click)="goTo(menu);">Paul smells</button>
         <button ion-button (click)="goTo(menu);">No one likes robert</button>

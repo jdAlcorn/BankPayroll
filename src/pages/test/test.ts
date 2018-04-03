@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {Bridge} from "../../providers/bridge";
+import {Tabs} from "../../providers/tabs";
+import {Events} from "ionic-angular";
 
 /**
  * Generated class for the TestPage page.
@@ -13,13 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-test',
   templateUrl: 'test.html',
 })
+
 export class TestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public bridge: Bridge) {
+  	
   }
+
+
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TestPage');
-  }
 
+   }
 }
