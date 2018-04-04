@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import {HttpErrorResponse} from "@angular/common/http";
 import {Bridge} from "./../../providers/bridge";
 import {AppSettings} from "../../app/app.config";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-login',
@@ -14,8 +15,8 @@ export class LoginPage {
   loading: Loading;
   registerCredentials = { email: 'blah@test.com', password: 'test123123' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams, private bridge: Bridge) { 
-   
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams, private bridge: Bridge) {
+
   }
 
 
@@ -25,7 +26,7 @@ export class LoginPage {
     this.auth.login(this.registerCredentials).subscribe(
   ( result ) => {
           // Credentials accepted, user has been authenticated
-          this.nav.setRoot(AppSettings.home);
+          this.nav.setRoot(HomePage);
        },
       ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
