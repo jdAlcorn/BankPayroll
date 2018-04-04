@@ -15,11 +15,10 @@
         <a href="#" id="menu-icon"></a>
 
         <ul>
-          <button ion-button (click)='getInfo();'>Menu</button>
-          <li><a href="#">Employee</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#" [navPush]="employee">Employee</a></li>
+          <li><a href="#"[navPush]="profile">Profile</a></li>
+          <li><a href="#"[navPush]="contact">Contact</a></li>
+          <li><a href="#"[navPush]="about">About</a></li>
         </ul>
 
         

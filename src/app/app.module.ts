@@ -13,33 +13,43 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../providers/http-service';
 
 import { MyApp } from './app.component';
-import {LoginPage} from "../pages/login/login";
-import {HomePage} from "../pages/home/home";
-import {TestPage} from "../pages/test/test";
+
+import {AppSettings} from "./app.config";
+
 import {Bridge} from '../providers/bridge';
-//import {Tabs} from "../providers/tabs";
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    TestPage,
-    HomePage
+    AppSettings.login,
+    AppSettings.test,
+    AppSettings.employee,
+    AppSettings.contact,
+    AppSettings.profile,
+    AppSettings.home
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicPageModule.forChild(LoginPage),
-    IonicPageModule.forChild(TestPage),
-    IonicPageModule.forChild(HomePage)
+    IonicPageModule.forChild(AppSettings.login),
+    IonicPageModule.forChild(AppSettings.test),
+    IonicPageModule.forChild(AppSettings.home),
+    IonicPageModule.forChild(AppSettings.about),
+    IonicPageModule.forChild(AppSettings.about),
+    IonicPageModule.forChild(AppSettings.employee),
+    IonicPageModule.forChild(AppSettings.contact)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    TestPage,
-    LoginPage
+    AppSettings.login,
+    AppSettings.test,
+    AppSettings.employee,
+    AppSettings.contact,
+    AppSettings.profile,
+    AppSettings.home,
+    AppSettings.profile,
   ],
   providers: [
     StatusBar,
@@ -56,7 +66,6 @@ import {Bridge} from '../providers/bridge';
       multi: true
     },
     Bridge
-    //Tabs
   ]
 })
 export class AppModule {}

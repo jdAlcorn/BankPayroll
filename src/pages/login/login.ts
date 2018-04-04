@@ -3,9 +3,8 @@ import { NavController, AlertController, LoadingController, Loading, IonicPage, 
 import { AuthService } from '../../providers/auth-service';
 import 'rxjs/add/operator/catch';
 import {HttpErrorResponse} from "@angular/common/http";
-import {HomePage} from "../home/home";
-import {TestPage} from "../test/test";
 import {Bridge} from "./../../providers/bridge";
+import {AppSettings} from "../../app/app.config";
 
 @Component({
   selector: 'page-login',
@@ -26,7 +25,7 @@ export class LoginPage {
     this.auth.login(this.registerCredentials).subscribe(
   ( result ) => {
           // Credentials accepted, user has been authenticated
-          this.nav.setRoot(HomePage);
+          this.nav.setRoot(AppSettings.home);
        },
       ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected

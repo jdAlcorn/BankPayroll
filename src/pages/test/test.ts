@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Bridge} from "../../providers/bridge";
-import {Tabs} from "../../providers/tabs";
 import {Events} from "ionic-angular";
 
 /**
