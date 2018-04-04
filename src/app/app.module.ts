@@ -5,6 +5,14 @@ import {IonicApp, IonicErrorHandler, IonicModule, IonicPageModule} from 'ionic-a
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import {LoginPage} from "../pages/login/login";
+import {HomePage} from "../pages/home/home";
+import {TestPage} from "../pages/test/test";
+import {EmployeePage} from "../pages/employee/employee";
+import {ContactPage} from "../pages/contact/contact";
+import {AboutPage} from "../pages/about/about";
+import {ProfilePage} from "../pages/profile/profile";
+
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Http, HttpModule} from "@angular/http";
 import {NavController} from "ionic-angular";
@@ -21,35 +29,36 @@ import {Bridge} from '../providers/bridge';
 @NgModule({
   declarations: [
     MyApp,
-    AppSettings.login,
-    AppSettings.test,
-    AppSettings.employee,
-    AppSettings.contact,
-    AppSettings.profile,
-    AppSettings.home
+    LoginPage,
+    HomePage,
+    TestPage,
+    EmployeePage,
+    ContactPage,
+    AboutPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicPageModule.forChild(AppSettings.login),
-    IonicPageModule.forChild(AppSettings.test),
-    IonicPageModule.forChild(AppSettings.home),
-    IonicPageModule.forChild(AppSettings.about),
-    IonicPageModule.forChild(AppSettings.about),
-    IonicPageModule.forChild(AppSettings.employee),
-    IonicPageModule.forChild(AppSettings.contact)
+    IonicPageModule.forChild(LoginPage),
+    IonicPageModule.forChild(HomePage),
+    IonicPageModule.forChild(TestPage),
+    IonicPageModule.forChild(EmployeePage),
+    IonicPageModule.forChild(ContactPage),
+    IonicPageModule.forChild(AboutPage),
+    IonicPageModule.forChild(ProfilePage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AppSettings.login,
-    AppSettings.test,
-    AppSettings.employee,
-    AppSettings.contact,
-    AppSettings.profile,
-    AppSettings.home,
-    AppSettings.profile,
+    LoginPage,
+    HomePage,
+    TestPage,
+    EmployeePage,
+    ContactPage,
+    AboutPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
