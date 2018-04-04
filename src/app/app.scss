@@ -6,11 +6,11 @@ ion-content {
 
 }
 
-.sidebar{
+.sidebar {
   background-color: #343434;
-  height: 100%;
-  ion-list{
-    height: 100%;
+  overflow-y: hidden !important;
+  ion-list, .list-ios, .list-md {
+    overflow-y: hidden !important;
   }
 }
 
