@@ -7,6 +7,7 @@ import {Bridge} from "./../../providers/bridge";
 import {AppSettings} from "../../app/app.config";
 import {HomePage} from "../home/home";
 
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',

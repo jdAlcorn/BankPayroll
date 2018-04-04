@@ -7,11 +7,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import {LoginPage} from "../pages/login/login";
 import {HomePage} from "../pages/home/home";
-import {TestPage} from "../pages/test/test";
+import {PayrollPage} from "../pages/payroll/payroll";
 import {EmployeePage} from "../pages/employee/employee";
 import {ContactPage} from "../pages/contact/contact";
 import {AboutPage} from "../pages/about/about";
-import {ProfilePage} from "../pages/profile/profile";
+import {CompaniesPage} from "../pages/companies/companies";
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Http, HttpModule} from "@angular/http";
@@ -31,11 +31,11 @@ import {Bridge} from '../providers/bridge';
     MyApp,
     LoginPage,
     HomePage,
-    TestPage,
+    PayrollPage,
     EmployeePage,
     ContactPage,
     AboutPage,
-    ProfilePage
+    CompaniesPage
   ],
   imports: [
     BrowserModule,
@@ -43,22 +43,22 @@ import {Bridge} from '../providers/bridge';
     IonicModule.forRoot(MyApp),
     IonicPageModule.forChild(LoginPage),
     IonicPageModule.forChild(HomePage),
-    IonicPageModule.forChild(TestPage),
+    IonicPageModule.forChild(PayrollPage),
     IonicPageModule.forChild(EmployeePage),
     IonicPageModule.forChild(ContactPage),
     IonicPageModule.forChild(AboutPage),
-    IonicPageModule.forChild(ProfilePage)
+    IonicPageModule.forChild(CompaniesPage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     HomePage,
-    TestPage,
+    PayrollPage,
     EmployeePage,
     ContactPage,
     AboutPage,
-    ProfilePage
+    CompaniesPage
   ],
   providers: [
     StatusBar,

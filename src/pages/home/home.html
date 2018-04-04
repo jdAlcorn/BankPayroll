@@ -1,30 +1,14 @@
 <ion-header>
- 
+  <ion-navbar>
     <ion-title>
-
-      </ion-title>
-
-    
-      
-      
-        
-
-        <ion-navbar>
-            <a href="#" id="logo"></a>
-
-        <a href="#" id="menu-icon"></a>
-
-        <ul>
-          <li><a href="#" [navPush]="employee">Employee</a></li>
-          <li><a href="#"[navPush]="profile">Profile</a></li>
-          <li><a href="#"[navPush]="contact">Contact</a></li>
-          <li><a href="#"[navPush]="about">About</a></li>
-        </ul>
-
-        
-      </ion-navbar>
-    
-
+      Home
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>

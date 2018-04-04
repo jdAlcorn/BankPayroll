@@ -11,19 +11,16 @@ import {Events} from "ionic-angular";
  */
 
 @Component({
-  selector: 'page-test',
-  templateUrl: 'test.html',
+  selector: 'page-payroll',
+  templateUrl: 'payroll.html',
 })
 
-export class TestPage {
+export class PayrollPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public bridge: Bridge) {
-  	
+  constructor() {
+
   }
 
 
 
-  ionViewDidLoad() {
-
-   }
 }

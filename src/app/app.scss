@@ -3,9 +3,24 @@
 // --------------------------------------------------
 
 ion-content {
-  background: url("../assets/imgs/background.jpg") !important;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+}
+
+.sidebar{
+  background-color: #343434;
+  height: 100%;
+  ion-list{
+    height: 100%;
+  }
+}
+
+.menu-content {
+  background-color: #343434;
+  font-weight: bold;
+  color: ghostwhite;
+  ion-icon {
+    padding-right:1rem;
+  }
 }
 
 // global styles
@@ -276,17 +291,7 @@ ion-navbar.no-border {
 // Toolbar
 // transparent nav bar
 .toolbar {
-  &.nav-transparent {
-    .toolbar-background {
-      background-color: rgba(86, 61, 124, .65);
-    }
-  }
-  .toolbar-title {
-    img {
-      vertical-align: sub;
-      border-radius: 10%;
-    }
-  }
+
 }
 
 

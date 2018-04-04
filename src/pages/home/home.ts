@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Bridge} from "../../providers/bridge";
-import {LoginPage} from "../login/login";
 
-import {TestPage} from "../test/test";
-
-import {AppSettings} from "../../app/app.config";
+import {EmployeePage} from "../employee/employee";
 
 @Component({
   selector: 'page-home',
@@ -13,7 +10,7 @@ import {AppSettings} from "../../app/app.config";
 })
 export class HomePage {
 	//All links for every pages nav bars
-	employee = AppSettings.employee;
+	employee = EmployeePage;
 
 getInfo(){
   console.log(this.bridge.get("/companies"));
