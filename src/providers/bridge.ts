@@ -2,40 +2,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {AppSettings} from "../app/app.config";
+import {Events} from "ionic-angular";
+import {User} from "../models/user";
+
+interface Company {
+  uID: string,
+  companyName: string,
+  address: string,
+  payInterval: string,
+  payPeriodStart: string
+}
+
 
 @Injectable()
 export class Bridge {
- data: Observable<any>;
- vari = null;
-  constructor(public http: HttpClient) {}
 
+ companies = {}; // The array of companies we fetched from the api will be cached here until it expires
+ companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
 
-get(query){
-	let data;
-        return new Promise(resolve => {
-            this.http.get(AppSettings.API_ENDPOINT + query)
-            .subscribe(
-                data => {
-                    resolve(JSON.parse(data["_body"]));
-                },
-                error => {
-                }
-            );
-        });
-}
+  constructor( public events: Events, public http: HttpClient ){};
 
-/*	new Promise(resolve => {
-  this.http.get(AppSettings.API_ENDPOINT + query)
-    .subscribe(data => {
-      this.vari = JSON.stringify(data);
-      resolve(this.vari);
-    });
-});
-    this.http.get(AppSettings.API_ENDPOINT + query).then((res)=> {this.data = res});
-	this.data.subscribe(res=> {this.vari = JSON.stringify(res)});
-	return this.vari;
-    	//subscribe(data => JSON.stringify(data)));
-   // alert(this.res);*/
+  private getCompaniesFromAPI() {
+    // Make the Http request and map the response so we can initialize our user object and extract the token
+    return this.http.get<Array<Company>>(AppSettings.API_ENDPOINT + "/companies" )
+      .map( companyResponse =>  {
+        this.companies = companyResponse;
+        this.companyDataLastFetched = Date.now(); // Set the timestamp for when this data was fetched
+        return this.companies;
+      })
   }
 
+  public getCompanies() {
+    // Check if we have unexpired data in the cache or if we need to fetch new data from the api instead
+    if( this.companyDataLastFetched + (AppSettings.CACHE_TTL * 1000) > Date.now() )
+      return Observable.create(observer => {
+        observer.next( this.companies );
+        observer.complete()
+      });
+    else
+      return this.getCompaniesFromAPI();
+  }
+
+}
 

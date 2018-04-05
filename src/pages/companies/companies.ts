@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Bridge} from "../../providers/bridge";
+import {HttpErrorResponse} from "@angular/common/http";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the ProfilePage page.
@@ -14,7 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CompaniesPage {
 
-  constructor() {
+  companies = null;
+
+  constructor( bridge: Bridge ) {
+    console.log("Getting company data....");
+    bridge.getCompanies().subscribe(
+      ( result ) => {
+        // Credentials accepted, user has been authenticated
+        this.companies = result;
+      },
+      ( err: HttpErrorResponse ) => {
+        if( err.status == 401 ) // Login credentials rejected
+          console.log("Access denied");
+        else // Some other error
+          console.log("An error has occurred: " + err.statusText);
+      }
+    )
   }
 
 

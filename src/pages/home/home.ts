@@ -13,7 +13,7 @@ export class HomePage {
 	employee = EmployeePage;
 
 getInfo(){
-  console.log(this.bridge.get("/companies"));
+  //console.log(this.bridge.get("/companies"));
 }
   constructor(public navCtrl: NavController, public bridge: Bridge) {
 
