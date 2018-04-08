@@ -13,6 +13,14 @@ interface Company {
   payPeriodStart: string
 }
 
+interface Employee {
+  uID: string,
+  firstName: string,
+  lastName: string,
+  payType: string,
+  payRate: Integer
+}
+
 
 @Injectable()
 export class Bridge {
@@ -20,7 +28,29 @@ export class Bridge {
  companies = {}; // The array of companies we fetched from the api will be cached here until it expires
  companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
 
+ employees = {};
+ fetchedEmployees = 0;
+
   constructor( public events: Events, public http: HttpClient ){};
+
+  private getEmployeesFromCompany(id) {
+    return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/867b3c73-a762-4587-a5c4-84007b6b481e/employees", {id: "867b3c73-a762-4587-a5c4-84007b6b481e"})
+           .map(employeeResponse => {
+             this.employees = employeeResponse;
+             this.fetchedEmployees - Date.now();
+             return this.employees
+            });
+  }
+
+  public getEmployees(id){
+    if(this.fetchedEmployees + (AppSettings.CACHE_TTL * 1000) > Date.now())
+        return Observable.create(observer => {
+          observer.next(this.employees);
+          observer.complete();
+        });
+    else
+        return this.getEmployeesFromCompany(id);
+  }
 
   private getCompaniesFromAPI() {
     // Make the Http request and map the response so we can initialize our user object and extract the token

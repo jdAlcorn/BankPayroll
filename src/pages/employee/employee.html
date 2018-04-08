@@ -19,6 +19,19 @@
 
 
 
-<ion-content padding>
+<ion-content class="employee-page" padding>
+
+ <div *ngIf="employees">
+    <div class="row header">
+          <div class="col">Employee Name</div>
+          <div class="col">Pay Type</div>
+          <div class="col">Pay Rate</div>
+        </div>
+    <div class="row" *ngFor="let employee of employees">
+      <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
+      <div class="col">{{employee.payType}}</div>
+      <div class="col">{{employee.payRate}}</div>
+    </div>
+  </div>
 
 </ion-content>

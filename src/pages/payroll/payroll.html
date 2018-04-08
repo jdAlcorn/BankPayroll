@@ -19,5 +19,15 @@
 
 <ion-content padding>
 
+ <div *ngIf="employees">
+    <div class="row header">
+          <div class="col">Employee Name</div>
+          <div class="col">Hours Worked</div>
+        </div>
+    <div class="row" *ngFor="let employee of employees">
+      <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
+      <div class="col"><ion-input type="number" step=".25" value=40></ion-input></div>
+    </div>
+  </div>
 
 </ion-content>

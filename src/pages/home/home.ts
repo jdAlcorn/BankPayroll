@@ -12,10 +12,17 @@ export class HomePage {
 	//All links for every pages nav bars
 	employee = EmployeePage;
 
-getInfo(){
-  //console.log(this.bridge.get("/companies"));
-}
   constructor(public navCtrl: NavController, public bridge: Bridge) {
 
   }
+  ionViewDidLoad(){
+	this.getInfo();
+}
+
+getInfo(){
+	this.bridge.getCompanies();
+ 	console.log(this.bridge.companies);
+ 	//console.log(this.bridge);
+ // alert("Why no work");
+}
 }

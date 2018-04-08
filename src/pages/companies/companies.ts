@@ -25,6 +25,7 @@ export class CompaniesPage {
       ( result ) => {
         // Credentials accepted, user has been authenticated
         this.companies = result;
+        console.log(this.companies[0]);
       },
       ( err: HttpErrorResponse ) => {
         if( err.status == 401 ) // Login credentials rejected
