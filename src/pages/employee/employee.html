@@ -23,15 +23,29 @@
 
  <div *ngIf="employees">
     <div class="row header">
-          <div class="col">Employee Name</div>
-          <div class="col">Pay Type</div>
-          <div class="col">Pay Rate</div>
+          <div class="col"><h3>Employee Name</h3></div>
+          <div class="col"><h3>Pay Type</h3></div>
+          <div class="col"><h3>Pay Rate</h3></div>
+        
         </div>
+        <hr>
     <div class="row" *ngFor="let employee of employees">
       <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
+      
       <div class="col">{{employee.payType}}</div>
       <div class="col">{{employee.payRate}}</div>
     </div>
+
+
+    <div>
+      <button ion-button  block color="dark" >
+       
+        Add Employee
+      </button>
+
+    </div>
   </div>
+
+
 
 </ion-content>

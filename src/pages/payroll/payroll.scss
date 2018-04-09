@@ -1,23 +1,34 @@
 page-payroll,
 .payroll {
-.header .col {
-	  background-color:lightgrey;
-	}
-	.col {
-	  border: solid 1px grey;
-	  border-bottom-style: none;
-	  border-right-style: none;
-	}
 
-	.row:nth-child(odd) {
-		background-color: #b3b3b3;
+	.col {
+	  border: solid 0px grey;
+	  border-bottom-style: none;
+		border-right-style: none;
+		color: white;
 	}
+	ion-content {
+		background: url("../assets/imgs/background.jpg")  !important;
+		background-repeat: no-repeat;
+		background-size: cover !important;
+		margin-top: 50px;
+		color:white;
+		
+	}
+	
+	
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(255,255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 250, 250, 0));
+	}
+	
 
 	.col:last-child {
-	  border-right: solid 1px grey;
+	  border-right: solid 0px grey;
 	}
 
 	.row:last-child .col {
-	  border-bottom: solid 1px grey;
+	  border-bottom: solid 0px grey;
 	}
 }

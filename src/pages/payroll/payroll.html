@@ -21,9 +21,10 @@
 
  <div *ngIf="employees">
     <div class="row header">
-          <div class="col">Employee Name</div>
-          <div class="col">Hours Worked</div>
+          <div class="col"><h3>Employee Name</h3></div>
+          <div class="col"><h3>Hours Worked</h3></div>
         </div>
+        <hr>
     <div class="row" *ngFor="let employee of employees">
       <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
       <div class="col"><ion-input type="number" step=".25" value=40></ion-input></div>
