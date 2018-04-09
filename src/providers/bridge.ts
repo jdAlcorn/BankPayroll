@@ -18,7 +18,7 @@ interface Employee {
   firstName: string,
   lastName: string,
   payType: string,
-  payRate: Integer
+  payRate: integer
 }
 
 
