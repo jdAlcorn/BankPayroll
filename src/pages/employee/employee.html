@@ -22,21 +22,16 @@
 <ion-content class="employee-page" padding>
 
  <div *ngIf="employees">
-    <div class="row header">
-          <div class="col"><h3>Employee Name</h3></div>
-          <div class="col"><h3>Pay Type</h3></div>
-          <div class="col"><h3>Pay Rate</h3></div>
-
-        </div>
-        <hr>
-    <div class="row" *ngFor="let employee of employees">
-      <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
-
-      <div class="col">{{employee.payType}}</div>
-      <div class="col">{{employee.payRate}}</div>
-    </div>
-  </div>
-
+    <ion-row *ngFor="let employee of employees">
+      <ion-col class="pull-left" col-8>
+        <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
+      </ion-col>
+      <ion-col class="pull-right">
+       <h3 style="color:rgb(97,220,174); margin-bottom:0;">${{employee.payRate}}</h3>
+        <small>{{employee.payType}}</small>
+      </ion-col>
+    </ion-row>
+</div>
 
 
 </ion-content>
