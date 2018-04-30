@@ -22,7 +22,6 @@ export class PayrollPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
 
- 	 console.log("Getting company data....");
     bridge.getEmployees("867b3c73-a762-4587-a5c4-84007b6b481e").subscribe(
       ( result ) => {
         // Credentials accepted, user has been authenticated
@@ -35,8 +34,8 @@ export class PayrollPage {
         else // Some other error
           console.log("An error has occurred: " + err.statusText);
       }
-    ) 
+    )
   }
-    
+
 
 }
