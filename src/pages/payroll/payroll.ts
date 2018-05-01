@@ -60,7 +60,6 @@ export class PayrollPage {
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
-     let payrollshit = null;
      for(let company in this.payrollHistory){
        if(ccID == company.companyID && this.lastPayStart.format("mm/DD/yyyy") == company.payPeriodStart){
          this.flattenPayroll(company.payroll);
@@ -72,7 +71,7 @@ export class PayrollPage {
    private flattenPayroll(payrollData){
      let payroll = {};
      for(let entry in payrollData){
-       let id = entry.employeeID;
+       let id = entry.employeeId;
        let hours = entry.hours;
        payroll[id] = hours;
      }
