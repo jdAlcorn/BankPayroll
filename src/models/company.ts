@@ -3,6 +3,5 @@ export class Company {
 
   constructor(name: string, firstName: string, lastName: string) {
     this.companyName = name;
-    alert("BLAH)");
   }
 }
