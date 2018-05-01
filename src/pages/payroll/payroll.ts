@@ -33,7 +33,8 @@ export class PayrollPage {
   payrollHistory = null;
   lastPayStart = null;
 
-  lastPayroll = null;
+  // Model for current payroll data entered into the form
+  payrollData = {};
 
 
   bridge = null;
@@ -43,6 +44,7 @@ export class PayrollPage {
     this.currentCompany = null;
     this.employees = null;
     this.payrollHistory = null;
+    this.payrollData = {};
 
     // Fetch data for the new company
     this.getCompany( this.selectedCompany );
@@ -50,6 +52,7 @@ export class PayrollPage {
     this.getPayrollHistory(this.selectedCompany);
     this.getLastPayroll();
    }
+
 
    private getLastPayroll(){ 
      this.getLastPayrollSubmission();
@@ -70,7 +73,7 @@ export class PayrollPage {
      for(let entry in this.lastPayroll){
        let id = entry.employeeID;
        let hours = entry.hours;
-       payroll.push({id = hours});
+       payroll[id] = hours;
      }
      this.lastPayroll = payroll;
    }
@@ -81,8 +84,10 @@ export class PayrollPage {
 
    private getLastPayPeriod(){
      let currentStart = moment(this.currentCompany.payPeriodStart, "mm/DD/yyyy");
+
      let lastStart  = null;
      let payType = this.currentCompany.payInterval;
+
 
      if(payType == "WEEKLY"){
          lastStart = currentStart.subtract(7, 'days');
@@ -93,9 +98,10 @@ export class PayrollPage {
          //16 - 15
          if(dayStart == '16') lastStart = currentStart.subtract(15, 'days');
          //1 -> 16
+
          if(dayStart == '1') lastStart = currentStart.subtract(1, 'month').add(15, 'days');
-     } else {
      }
+
      return lastStart;
    }
 

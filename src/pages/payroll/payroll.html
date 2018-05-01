@@ -44,7 +44,7 @@
          <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
        </ion-col>
        <ion-col class="pull-right" col-2 *ngIf="employee.payType == 'HOURLY'">
-         <ion-input type="number" step=".25" value=40 style="min-width:100%;text-align: end;"></ion-input>
+         <ion-input type="number" step=".25" [(ngModel)]="payrollData[employee.uID]" style="min-width:100%;text-align: end;"></ion-input>
        </ion-col>
    </ion-row>
  </div>
