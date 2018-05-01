@@ -33,6 +33,9 @@ export class PayrollPage {
   payrollHistory = null;
   lastPayStart = null;
 
+  // Model for current payroll data entered into the form
+  payrollData = {};
+
 
   bridge = null;
 
@@ -41,6 +44,7 @@ export class PayrollPage {
     this.currentCompany = null;
     this.employees = null;
     this.payrollHistory = null;
+    this.payrollData = {};
 
     // Fetch data for the new company
     this.getCompany( this.selectedCompany );
