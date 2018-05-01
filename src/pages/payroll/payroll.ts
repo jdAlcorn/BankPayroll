@@ -4,7 +4,7 @@ import {Bridge} from "../../providers/bridge";
 import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
-
+import * as moment from 'moment';
 /**
  * Generated class for the TestPage page.
  *
@@ -27,15 +27,32 @@ export class PayrollPage {
  clicked = false;
  coms = null;
 
+ currentCompany = null;
+
+
+
  bridge = null;
 
 private stuff(): void {
-  //let company = this.coms;
-  this.getEmployees(this.coms);
+  let company = this.coms;
+  this.getCurrentCompany(company);
+  this.getEmployees(company);
  }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
+private getCurrentCompany(id){
+  for(let company of this.companies){
+    if(company['uID'] == id){
+      this.currentCompany = company;
+      return;
+    }
+  }
+}
+
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
+
    this.bridge = bridge;
 
  	 console.log("Getting company data....");
