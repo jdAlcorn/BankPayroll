@@ -27,9 +27,9 @@ export class PayrollPage {
  bridge = null;
 
 private stuff(): void {
-  let company = this.coms;
+  //let company = this.coms;
   //alert(company);
-  this.getEmployees(company);
+  this.getEmployees(this.coms);
 }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
@@ -39,10 +39,10 @@ private stuff(): void {
       (comps) => {
         this.numComps = comps.length;
         this.companies = comps;
-          } 
+          }
         )
     }
-    
+
     private getEmployees(id){
      this.bridge.getEmployees(id).subscribe(
           ( result ) => {

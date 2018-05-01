@@ -6,6 +6,31 @@ ion-content {
 
 }
 
+
+.alert-ios .alert-button {
+  color: #000000 !important;
+}
+
+.alert-radio-label {
+  color: #000000 !important;
+}
+
+.alert-radio-icon {
+  color: #000000 !important;
+}
+
+.alert-md .alert-button{
+  color: #000000 !important;
+}
+
+.alert-ios [aria-checked=true] .alert-radio-label {
+  color: #425aff !important;
+}
+.alert-ios [aria-checked=true] .alert-radio-inner {
+  border-color: #000000 !important;
+}
+
+
 .sidebar {
   background-color: #343434;
   overflow-y: hidden !important;
