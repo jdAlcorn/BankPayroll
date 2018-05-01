@@ -49,7 +49,7 @@ export class PayrollPage {
     console.log(this.getLastPayPeriod());
    }
 
-   private getLastPayPeriofd(){
+   private getLastPayPeriod(){
      let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
      let lastStart  = null;
      let payType = this.currentCompany['payType'];
