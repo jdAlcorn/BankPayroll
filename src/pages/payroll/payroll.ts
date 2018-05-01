@@ -45,12 +45,14 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
+
+    console.log(this.getLastPayPeriod());
    }
 
    private getLastPayPeriofd(){
      let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
      let lastStart  = null;
-     let payTime = this.currentCompany['payType'];
+     let payType = this.currentCompany['payType'];
 
      if(payType == "WEEKLY"){
          lastStart = currentStart.remove(7, 'days');
