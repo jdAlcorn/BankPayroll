@@ -22,15 +22,40 @@
 <ion-content class="employee-page" padding>
 
  <div *ngIf="employees">
+
+
+    <ion-row >
+        <ion-col col-12 style="margin-top:10px;"><h3>HOURLY PAID</h3></ion-col>
+        </ion-row>
     <ion-row *ngFor="let employee of employees">
-      <ion-col class="pull-left" col-8>
+      <ion-col class="pull-left" style="margin-top:10px;" col-8 *ngIf="employee.payType == 'HOURLY'">
         <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
       </ion-col>
-      <ion-col class="pull-right" col-4>
+      <ion-col class="pull-right" style="margin-top:8px;" col-4 *ngIf="employee.payType == 'HOURLY'"> 
        <h3 style="color:rgb(97,220,174); margin-bottom:0;">${{employee.payRate}}</h3>
-        <small>{{employee.payType}}</small>
+       
+       
       </ion-col>
     </ion-row>
+
+<br>
+<br> 
+<br>
+<br>
+
+<ion-row style="margin-top:40px; text-align:left;">
+    <ion-col col-12 style="margin-top:10px;"><h3>SALARY</h3></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let employee of employees">
+        <ion-col class="pull-left" style="margin-top:10px;" col-8 *ngIf="employee.payType == 'SALARY'">
+          <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
+        </ion-col>
+        <ion-col class="pull-right" style="margin-top:8px;" col-4 *ngIf="employee.payType == 'SALARY'">
+         <h3 style="color:rgb(97,220,174); margin-bottom:0;">${{employee.payRate}}</h3>
+         
+     
+        </ion-col>
+      </ion-row>
 </div>
 
 
