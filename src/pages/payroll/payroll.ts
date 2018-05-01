@@ -46,7 +46,7 @@ export class PayrollPage {
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
 
-    console.log(this.getLastPayPeriod());
+    alert(this.getLastPayPeriod());
    }
 
    private getLastPayPeriod(){
