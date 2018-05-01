@@ -33,14 +33,14 @@
  <div *ngIf="employees">
 
    <ion-row class="row header" style="margin-top:40px;">
-     <ion-col col-6 ><h3>Employee Name</h3></ion-col>
-     <ion-col col-6 text-right style="margin-left:30px auto;"><h3>Hours Worked</h3></ion-col>
+     <ion-col col-6  style="margin-top:10px;"><h3>Employee Name</h3></ion-col>
+     <ion-col col-6  style="margin-top:10px;" text-right ><h3>Hours Worked</h3></ion-col>
    </ion-row>
    <hr>
    <br>
 
    <ion-row *ngFor="let employee of employees">
-       <ion-col class="pull-left" col-10 *ngIf="employee.payType == 'HOURLY'">
+       <ion-col class="pull-left" style="margin-top:10px;" col-10 *ngIf="employee.payType == 'HOURLY'">
          <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
        </ion-col>
        <ion-col class="pull-right" col-2 *ngIf="employee.payType == 'HOURLY'">
