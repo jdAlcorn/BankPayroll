@@ -48,9 +48,17 @@ export class PayrollPage {
    }
 
    private getLastPayPeriofd(){
-     let currentStart = moment(this.currentCompany['payPeriodStart']);
+     let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
      let lastStart  = null;
      let payTime = this.currentCompany['payType'];
+
+     if(payType == "WEEKLY"){
+         lastStart = currentStart.remove(7, 'days');
+     } else if(payType == "BIWEEKLY"){
+         lastStart = currentStart.remove(14, 'days');
+     } else if(payType == "BIMONTHLY"){
+         lastStart = currentStart.remove(30, 'days');
+     }
    }
 
 
