@@ -5,7 +5,7 @@ import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
 
-
+import * as moment from 'moment';
 /**
  * Generated class for the TestPage page.
  *
@@ -45,6 +45,12 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
+   }
+
+   private getLastPayPeriofd(){
+     let currentStart = moment(this.currentCompany['payPeriodStart']);
+     let lastStart  = null;
+     let payTime = this.currentCompany['payType'];
    }
 
 
