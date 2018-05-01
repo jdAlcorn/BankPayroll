@@ -34,7 +34,7 @@ export class Bridge {
   constructor( public events: Events, public http: HttpClient ){};
 
   private getEmployeesFromCompany(id) {
-    return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/" + id +"/employees")
+    return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/" + id + "/employees")
            .map(employeeResponse => {
              this.employees = employeeResponse;
              this.fetchedEmployees - Date.now();

@@ -25,15 +25,16 @@ export class PayrollPage {
  selected  = false;
  companyID = null;
  clicked = false;
+ coms = null;
 
  currentCompany = null;
 
 
 
  bridge = null;
- alertCtrl = null;
 
 private stuff(): void {
+<<<<<<< HEAD
   let company = this.coms;
   this.getCurrentCompany(company);
   this.getEmployees(company);
@@ -52,8 +53,8 @@ private getCurrentCompany(id){
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
+
    this.bridge = bridge;
-   this.alertCtrl = alertCtrl;
 
  	 console.log("Getting company data....");
     bridge.getCompanies().subscribe(
