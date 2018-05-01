@@ -21,7 +21,7 @@ interface Employee {
   payRate: number
 }
 
-interface PayrollEntry {
+export interface PayrollEntry {
   employeeId: string,
   hours: number
 }
@@ -116,6 +116,11 @@ export class Bridge {
       });
     else
       return this.getPayrollHistoryFromAPI(companyId);
+  }
+
+
+  public submitCompanyPayroll( periodStart: string, companyId: string, payrollSubmission: Array<PayrollSubmission> ){
+    return this.http.post(AppSettings.API_ENDPOINT + `companies/${companyId}/submitPayroll`, payrollSubmission)
   }
 
 
