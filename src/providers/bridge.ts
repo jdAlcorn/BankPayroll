@@ -25,21 +25,21 @@ interface Employee {
 @Injectable()
 export class Bridge {
 
- companies = {}; // The array of companies we fetched from the api will be cached here until it expires
- companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
+  companies = {}; // The array of companies we fetched from the api will be cached here until it expires
+  companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
 
- employees = {};
- fetchedEmployees = 0;
+  employees = {};
+  fetchedEmployees = 0;
 
   constructor( public events: Events, public http: HttpClient ){};
 
   private getEmployeesFromCompany(id) {
     return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/" + id + "/employees")
-           .map(employeeResponse => {
-             this.employees = employeeResponse;
-             this.fetchedEmployees - Date.now();
-             return this.employees
-            });
+    .map(employeeResponse => {
+      this.employees = employeeResponse;
+      this.fetchedEmployees = Date.now();
+      return this.employees
+    });
   }
 
   public getEmployees(id){

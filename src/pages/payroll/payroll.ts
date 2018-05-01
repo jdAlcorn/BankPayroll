@@ -4,7 +4,7 @@ import {Bridge} from "../../providers/bridge";
 import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
-import * as moment from 'moment';
+
 /**
  * Generated class for the TestPage page.
  *
@@ -19,16 +19,15 @@ import * as moment from 'moment';
 
 export class PayrollPage {
 
- employees = null;
- companies = null;
- numComps  = null;
- selected  = false;
- companyID = null;
- clicked = false;
- coms = null;
+  employees = null;
+  companies = null;
+  numComps  = null;
+  selected  = false;
+  companyID = null;
+  clicked = false;
+  currentCompany = null;
 
- currentCompany = null;
-
+  bridge = null;
 
 
  bridge = null;
@@ -56,7 +55,12 @@ private submitShit(){
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
+private updateCountry(): void {
+  this.getEmployees(this.currentCompany);
+ }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
 
    this.bridge = bridge;
 
