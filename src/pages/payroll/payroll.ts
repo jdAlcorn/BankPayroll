@@ -19,24 +19,44 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class PayrollPage {
 
  employees = null;
+ companies = null;
+ numComps  = null;
+ selected  = false;
+ companyID = null;
+
+ bridge = null;
+
+private stuff(): void {
+  let company = this.coms;
+  //alert(company);
+  this.getEmployees(company);
+}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
-
+   this.bridge = bridge;
  	 console.log("Getting company data....");
-    bridge.getEmployees("867b3c73-a762-4587-a5c4-84007b6b481e").subscribe(
-      ( result ) => {
-        // Credentials accepted, user has been authenticated
-        this.employees = result;
-        console.log(this.employees);
-      },
-      ( err: HttpErrorResponse ) => {
-        if( err.status == 401 ) // Login credentials rejected
-          console.log("Access denied");
-        else // Some other error
-          console.log("An error has occurred: " + err.statusText);
-      }
-    ) 
-  }
+    bridge.getCompanies().subscribe(
+      (comps) => {
+        this.numComps = comps.length;
+        this.companies = comps;
+          } 
+        )
+    }
     
+    private getEmployees(id){
+     this.bridge.getEmployees(id).subscribe(
+          ( result ) => {
+            // Credentials accepted, user has been authenticated
+            this.employees = result;
+            console.log(this.employees);
+          },
+          ( err: HttpErrorResponse ) => {
+            if( err.status == 401 ) // Login credentials rejected
+              console.log("Access denied");
+            else // Some other error
+              console.log("An error has occurred: " + err.statusText);
+          }
+        )
+}
 
 }

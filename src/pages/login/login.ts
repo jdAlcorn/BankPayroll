@@ -27,8 +27,7 @@ export class LoginPage {
     this.auth.login(this.registerCredentials).subscribe(
   ( result ) => {
           // Credentials accepted, user has been authenticated
-          console.log(result)
-          this.nav.setRoot(HomePage);
+           this.nav.setRoot(HomePage);
        },
       ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected

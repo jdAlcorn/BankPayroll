@@ -19,6 +19,17 @@
 
 <ion-content padding>
 
+<div *ngIf="numComps > 1">
+      <ion-item>
+        <ion-label>Company</ion-label>
+         <ion-select [(ngModel)]="coms" (ionChange)="stuff();">
+          <div *ngFor="let company of companies">
+           <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
+          </div>
+          </ion-select>
+      </ion-item>
+    </div>
+
  <div *ngIf="employees">
     <div class="row header">
           <div class="col"><h3>Employee Name</h3></div>
