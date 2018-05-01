@@ -14,40 +14,17 @@
 
 <ion-content padding>
 
-  
-    
-  <ion-item>
-    <ion-label floating>First Name</ion-label>
-    <ion-input type="txt"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Last Name</ion-label>
-    <ion-input type="txt"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Phone</ion-label>
-    <ion-input type="tel"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Contact via email</ion-label>
-    <ion-checkbox></ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-label>Contact via phone</ion-label>
-    <ion-checkbox></ion-checkbox>
-  </ion-item>
-  <ion-item>
-    <ion-textarea  style="height:200px;"   placeholder="Enter a description"></ion-textarea>
-  </ion-item>
-  <button ion-button  block color="dark" >
-       
-    Submit
-  </button>
+  <ion-row>
+    <ion-col col-8 offset-2>
+      <button ion-button style="width:100%" href="mailto:info@someemail.com"><ion-icon style="font-size: 35px;" name="mail"></ion-icon><b>Contact by mail</b></button>
+    </ion-col>
+  </ion-row>
+  <br>
+  <ion-row>
+    <ion-col col-8 offset-2>
+      <button ion-button style="width:100%" href="tel:1235556789"><ion-icon style="font-size: 35px;" name="call"></ion-icon><br><b>Contact by Phone</b></button>
+    </ion-col>
+  </ion-row>
 
 
 

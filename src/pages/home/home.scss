@@ -1,8 +1,53 @@
 page-home,
 .home {
 
-}
+  .header{
 
+
+    background-color: transparent;
+    color:white;
+  }
+  .header .col {
+
+    color:white;
+
+  }
+  .col {
+    border: solid 0px;
+    border-bottom-style: none;
+    border-right-style: none;
+    color:white;
+  }
+
+	ion-content {
+		background: url("../assets/imgs/background.jpg")  !important;
+		background-repeat: no-repeat;
+		background-size: cover !important;
+		margin-top: 50px;
+		color:white;
+
+	}
+
+
+	hr {
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(255,255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 250, 250, 0));
+	}
+
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255,255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 250, 250, 0));
+  }
+
+  .row {
+    background-color:rgba(255,255,255, 0.3);
+    margin-bottom: 10px;
+  }
+
+}
 
 
 
