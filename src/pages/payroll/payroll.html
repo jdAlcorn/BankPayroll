@@ -19,34 +19,16 @@
 
 <ion-content padding>
 
-<div *ngIf="numComps > 1">
-      <ion-item>
-        <ion-label>Company</ion-label>
-         <ion-select [(ngModel)]="coms" (ionChange)="stuff();">
-          <div *ngFor="let company of companies">
-           <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
-          </div>
-          </ion-select>
-      </ion-item>
-    </div>
-
  <div *ngIf="employees">
-
-   <ion-row class="row header">
-     <ion-col col-6><h3>Employee Name</h3></ion-col>
-     <ion-col col-6 text-right><h3>Hours Worked</h3></ion-col>
-   </ion-row>
-   <hr>
-   <br>
-
-   <ion-row *ngFor="let employee of employees">
-       <ion-col class="pull-left" col-10 *ngIf="employee.payType == 'HOURLY'">
-         <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
-       </ion-col>
-       <ion-col class="pull-right" col-2 *ngIf="employee.payType == 'HOURLY'">
-         <ion-input type="number" step=".25" value=40 style="min-width:100%;text-align: end;"></ion-input>
-       </ion-col>
-   </ion-row>
- </div>
+    <div class="row header">
+          <div class="col"><h3>Employee Name</h3></div>
+          <div class="col"><h3>Hours Worked</h3></div>
+        </div>
+        <hr>
+    <div class="row" *ngFor="let employee of employees">
+      <div class="col">{{employee.lastName}}, {{employee.firstName}}</div>
+      <div class="col"><ion-input type="number" step=".25" value=40></ion-input></div>
+    </div>
+  </div>
 
 </ion-content>

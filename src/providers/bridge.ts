@@ -18,7 +18,7 @@ interface Employee {
   firstName: string,
   lastName: string,
   payType: string,
-  payRate: number
+
 }
 
 
@@ -34,7 +34,7 @@ export class Bridge {
   constructor( public events: Events, public http: HttpClient ){};
 
   private getEmployeesFromCompany(id) {
-    return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/" + id +"/employees")
+    return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/867b3c73-a762-4587-a5c4-84007b6b481e/employees", {id: "867b3c73-a762-4587-a5c4-84007b6b481e"})
            .map(employeeResponse => {
              this.employees = employeeResponse;
              this.fetchedEmployees - Date.now();
