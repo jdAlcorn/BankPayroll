@@ -32,6 +32,7 @@ export class PayrollPage {
   employees = null;
   payrollHistory = null;
 
+
   bridge = null;
 
   private updateCompany(): void {
@@ -39,8 +40,9 @@ export class PayrollPage {
     this.currentCompany = null;
     this.employees = null;
     this.payrollHistory = null;
-    this.selected = true;
+
     // Fetch data for the new company
+    this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
    }
@@ -62,6 +64,20 @@ export class PayrollPage {
          result => {
            this.payrollHistory = result;
          },
+        ( err: HttpErrorResponse ) => {
+          if( err.status == 401 ) // Login credentials rejected
+            console.log("Access denied");
+          else // Some other error
+            console.log("An error has occurred: " + err.statusText);
+        }
+      )
+    }
+
+    private getCompany(companyId){
+      this.bridge.getCompanies().subscribe(
+        result => (
+          this.currentCompany = result[companyId]
+        ),
         ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
             console.log("Access denied");
