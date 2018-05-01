@@ -57,6 +57,10 @@ private presentConfirm() {
     ]
   });
   alert.present();
+
+  //let company = this.coms;
+  //alert(company);
+  this.getEmployees(this.coms);
 }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
@@ -68,10 +72,10 @@ private presentConfirm() {
       (comps) => {
         this.numComps = comps.length;
         this.companies = comps;
-          } 
+          }
         )
     }
-    
+
     private getEmployees(id){
      this.bridge.getEmployees(id).subscribe(
           ( result ) => {
