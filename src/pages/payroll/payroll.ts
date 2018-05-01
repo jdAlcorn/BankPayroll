@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Bridge} from "../../providers/bridge";
+import {Bridge, PayrollEntry} from "../../providers/bridge";
 import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
@@ -111,19 +111,34 @@ export class PayrollPage {
       )
     }
 
-    private getEmployees(companyId){
-     this.bridge.getEmployees(companyId).subscribe(
-        ( result ) => {
+    private getEmployees(companyId) {
+      this.bridge.getEmployees(companyId).subscribe(
+        (result) => {
           // Credentials accepted, user has been authenticated
           this.employees = result;
         },
-        ( err: HttpErrorResponse ) => {
-          if( err.status == 401 ) // Login credentials rejected
+        (err: HttpErrorResponse) => {
+          if (err.status == 401) // Login credentials rejected
             console.log("Access denied");
           else // Some other error
             console.log("An error has occurred: " + err.statusText);
         }
       )
-  }
+    }
+
+      private submitPayroll( companyId: string , payrollStart: string, payroll: Array<PayrollEntry> ){
+        this.bridge.submitCompanyPayroll(payrollStart, companyId, payroll).subscribe(
+          result => {
+            console.log("Payroll Submitted")
+          },
+          ( err: HttpErrorResponse ) => {
+            if( err.status == 401 ) // Login credentials rejected
+              console.log("Access denied");
+            else // Some other error
+              console.log("An error has occurred: " + err.statusText);
+          }
+        )
+      }
+
 
 }
