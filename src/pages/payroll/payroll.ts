@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Bridge, PayrollEntry} from "../../providers/bridge";
+import {Bridge, PayrollEntry, PayrollHistory} from "../../providers/bridge";
 import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
@@ -30,7 +30,7 @@ export class PayrollPage {
 
   currentCompany = null;
   employees = null;
-  payrollHistory = null;
+  payrollHistory: Array<PayrollHistory>;
   lastPayStart = null;
 
   // Model for current payroll data entered into the form
@@ -50,27 +50,28 @@ export class PayrollPage {
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
     this.getLastPayroll();
-    console.log(this.payrollData);
    }
 
 
-   private getLastPayroll(){ 
+   private getLastPayroll(){
      this.getLastPayrollSubmission();
    }
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
-     for(let company in this.payrollHistory){
-       if(ccID == company.companyID && this.lastPayStart.format("mm/DD/yyyy") == company.payPeriodStart){
-         this.flattenPayroll(company.payroll);
-         break;
+     if( this.payrollHistory != null ) {
+       for (let history of this.payrollHistory) {
+         if (ccID == history.companyId && this.lastPayStart.format("mm/DD/yyyy") == history.payPeriodStart) {
+           this.flattenPayroll(history.payroll);
+           break;
+         }
        }
      }
    }
 
    private flattenPayroll(payrollData){
      let payroll = {};
-     for(let entry in payrollData){
+     for(let entry of payrollData){
        let id = entry.employeeId;
        let hours = entry.hours;
        payroll[id] = hours;
@@ -121,7 +122,6 @@ export class PayrollPage {
       this.bridge.getCompanyPayrollHistory(companyId).subscribe (
          result => {
            this.payrollHistory = result;
-           console.log(this.payrollHistory);
          },
         ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
