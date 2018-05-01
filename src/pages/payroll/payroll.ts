@@ -59,7 +59,7 @@ export class PayrollPage {
      } else if(payType == "BIWEEKLY"){
          lastStart = currentStart.remove(14, 'days');
      } else if(payType == "BIMONTHLY"){
-         let dayStart = currentStart.format('D');
+         let dayStart = currentStart.format('D') as number;
          //16 - 15
          if(dayStart == 16) lastStart = currentStart.remove(15, 'days');
          //1 -> 16
