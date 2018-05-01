@@ -50,7 +50,7 @@ export class PayrollPage {
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
     this.getLastPayroll();
-    console.log(this.lastPayroll);
+    console.log(this.payrollData);
    }
 
 
@@ -62,12 +62,11 @@ export class PayrollPage {
      let ccID = this.currentCompany.uID;
      let payrollshit = null;
      for(let company in this.payrollHistory){
-       if(ccID == company.uID && this.lastPayStart == company.payPeriodStart){
-         payrollshit = company.payroll;
+       if(ccID == company.companyID && this.lastPayStart.format("mm/DD/yyyy") == company.payPeriodStart){
+         this.flattenPayroll(company.payroll);
          break;
        }
      }
-     this.flattenPayroll();
    }
 
    private flattenPayroll(payrollData){
