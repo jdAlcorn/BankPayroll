@@ -34,7 +34,6 @@ export class PayrollPage {
  bridge = null;
 
 private stuff(): void {
-<<<<<<< HEAD
   let company = this.coms;
   this.getCurrentCompany(company);
   this.getEmployees(company);
