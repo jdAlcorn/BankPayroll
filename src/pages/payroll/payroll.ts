@@ -39,7 +39,7 @@ export class PayrollPage {
     this.currentCompany = null;
     this.employees = null;
     this.payrollHistory = null;
-    this.selected = true;
+
     // Fetch data for the new company
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
