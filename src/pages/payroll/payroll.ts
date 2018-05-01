@@ -36,6 +36,7 @@ export class PayrollPage {
 private stuff(): void {
   let company = this.coms;
   this.getCurrentCompany(company);
+  this.selected = true;
   this.getEmployees(company);
  }
 
@@ -47,6 +48,10 @@ private getCurrentCompany(id){
       return;
     }
   }
+}
+
+private submitShit(){
+  
 }
 
 
