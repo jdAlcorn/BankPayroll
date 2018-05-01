@@ -36,7 +36,6 @@ export class PayrollPage {
   // Model for current payroll data entered into the form
   payrollData = {};
 
-
   bridge = null;
 
   private updateCompany(): void {
@@ -51,31 +50,34 @@ export class PayrollPage {
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
     this.getLastPayroll();
+    console.log(this.lastPayroll);
    }
 
 
    private getLastPayroll(){ 
      this.getLastPayrollSubmission();
-     this.flattenPayroll();
    }
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
+     let payrollshit = null;
      for(let company in this.payrollHistory){
        if(ccID == company.uID && this.lastPayStart == company.payPeriodStart){
-         this.lastPayroll = company.payroll;
+         payrollshit = company.payroll;
+         break;
        }
      }
+     this.flattenPayroll();
    }
 
-   private flattenPayroll(){
-     let payroll = array();
-     for(let entry in this.lastPayroll){
+   private flattenPayroll(payrollData){
+     let payroll = {};
+     for(let entry in payrollData){
        let id = entry.employeeID;
        let hours = entry.hours;
        payroll[id] = hours;
      }
-     this.lastPayroll = payroll;
+     this.payrollData = payroll;
    }
 
    private submitShit(){
