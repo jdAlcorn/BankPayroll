@@ -33,6 +33,8 @@ export class PayrollPage {
   payrollHistory = null;
   lastPayStart = null;
 
+  lastPayroll = null;
+
 
   bridge = null;
 
@@ -46,8 +48,31 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
+    this.getLastPayroll();
+   }
 
-    
+   private getLastPayroll(){ 
+     this.getLastPayrollSubmission();
+     this.flattenPayroll();
+   }
+
+   private getLastPayrollSubmission(){
+     let ccID = this.currentCompany.uID;
+     for(let company in this.payrollHistory){
+       if(ccID == company.uID && this.lastPayStart == company.payPeriodStart){
+         this.lastPayroll = company.payroll;
+       }
+     }
+   }
+
+   private flattenPayroll(){
+     let payroll = array();
+     for(let entry in this.lastPayroll){
+       let id = entry.employeeID;
+       let hours = entry.hours;
+       payroll.push({id = hours});
+     }
+     this.lastPayroll = payroll;
    }
 
    private submitShit(){
@@ -57,9 +82,7 @@ export class PayrollPage {
    private getLastPayPeriod(){
      let currentStart = moment(this.currentCompany.payPeriodStart, "mm/DD/yyyy");
      let lastStart  = null;
-     let payType = this.currentCompany.payType;
-
-     alert(payType);
+     let payType = this.currentCompany.payInterval;
 
      if(payType == "WEEKLY"){
          lastStart = currentStart.subtract(7, 'days');
@@ -70,9 +93,8 @@ export class PayrollPage {
          //16 - 15
          if(dayStart == '16') lastStart = currentStart.subtract(15, 'days');
          //1 -> 16
-         if(dayStart == '1') lastStart = currentStart.subtract(1, 'month').add(14, 'days');
+         if(dayStart == '1') lastStart = currentStart.subtract(1, 'month').add(15, 'days');
      } else {
-       console.log(payType);
      }
      return lastStart;
    }
@@ -93,6 +115,7 @@ export class PayrollPage {
       this.bridge.getCompanyPayrollHistory(companyId).subscribe (
          result => {
            this.payrollHistory = result;
+           console.log(this.payrollHistory);
          },
         ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
@@ -109,7 +132,6 @@ export class PayrollPage {
           for( let company of result ){
             if( company.uID == companyId ){
               this.currentCompany = company;
-              alert(this.getLastPayPeriod());
               this.lastPayStart = this.getLastPayPeriod();
               break;
             }
