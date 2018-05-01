@@ -34,34 +34,6 @@ private stuff(): void {
   this.getEmployees(company);
  }
 
-private presentConfirm() {
-  let alert = this.alertCtrl.create({
-    title: 'Confirm Switch Company',
-    message: 'Do you really want to switch companies? All unsent data will be lost.',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-          this.clicked = false;
-        }
-      },
-      {
-        text: 'Confirm',
-        handler: () => {
-          console.log('Confirm clicked');
-          this.clicked = true;
-        }
-      }
-    ]
-  });
-  alert.present();
-
-  //let company = this.coms;
-  //alert(company);
-  this.getEmployees(this.coms);
-}
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
    this.bridge = bridge;
