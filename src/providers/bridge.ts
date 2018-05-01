@@ -21,59 +21,36 @@ interface Employee {
   payRate: number
 }
 
-interface PayrollEntry {
-  employeeId: string,
-  hours: number
-}
-
-interface PayrollHistory {
-  companyId: string,
-  payPeriodStart: string,
-  dateSubmitted: string,
-  submittedBy: string,
-  payroll: Array<PayrollEntry>
-}
-
-interface PayrollSubmission {
-  payPeriodStart: string,
-  payroll: Array<PayrollEntry>
-}
-
 
 @Injectable()
 export class Bridge {
 
-  companies = {}; // The array of companies we fetched from the api will be cached here until it expires
-  employees = {};
-  payrollHistory = {};
+ companies = {}; // The array of companies we fetched from the api will be cached here until it expires
+ companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
 
-  companyDataLastFetched = 0; // The unix timestamp of when we last fetched data
-  employeeDataLastFetched = 0;
-  payrollHistoryLastFetched = 0;
-
-
+ employees = {};
+ fetchedEmployees = 0;
 
   constructor( public events: Events, public http: HttpClient ){};
 
   private getEmployeesFromCompany(id) {
     return this.http.get<Array<Employee>>(AppSettings.API_ENDPOINT + "/companies/" + id + "/employees")
-    .map(employeeResponse => {
-      this.employees[id] = employeeResponse;
-      this.employeeDataLastFetched = Date.now();
-      return employeeResponse
-    });
+           .map(employeeResponse => {
+             this.employees = employeeResponse;
+             this.fetchedEmployees - Date.now();
+             return this.employees
+            });
   }
 
   public getEmployees(id){
-    if( this.employees[id] &&  this.employeeDataLastFetched + (AppSettings.CACHE_TTL * 1000) > Date.now())
+    if(this.fetchedEmployees + (AppSettings.CACHE_TTL * 1000) > Date.now())
         return Observable.create(observer => {
-          observer.next(this.employees[id]);
+          observer.next(this.employees);
           observer.complete();
         });
     else
         return this.getEmployeesFromCompany(id);
   }
-
 
   private getCompaniesFromAPI() {
     // Make the Http request and map the response so we can initialize our user object and extract the token
@@ -95,31 +72,6 @@ export class Bridge {
     else
       return this.getCompaniesFromAPI();
   }
-
-
-  private getPayrollHistoryFromAPI(companyId: string) {
-    // Make the Http request and map the response so we can initialize our user object and extract the token
-    return this.http.get<Array<PayrollHistory>>(AppSettings.API_ENDPOINT + `/companies/${companyId}/payrollHistory` )
-      .map( payrollHistory =>  {
-        this.payrollHistory[companyId] = payrollHistory;
-        this.payrollHistoryLastFetched = Date.now(); // Set the timestamp for when this data was fetched
-        return payrollHistory;
-      })
-  }
-
-  public getCompanyPayrollHistory(companyId: string) {
-    // Check if we have unexpired data in the cache or if we need to fetch new data from the api instead
-    if( this.payrollHistory[companyId] && this.companyDataLastFetched + (AppSettings.CACHE_TTL * 1000) > Date.now() )
-      return Observable.create(observer => {
-        observer.next( this.payrollHistory[companyId] );
-        observer.complete()
-      });
-    else
-      return this.getPayrollHistoryFromAPI(companyId);
-  }
-
-
-
 
 }
 
