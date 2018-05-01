@@ -19,19 +19,18 @@ import { AlertController } from 'ionic-angular';
 
 export class PayrollPage {
 
- employees = null;
- companies = null;
- numComps  = null;
- selected  = false;
- companyID = null;
- clicked = false;
- coms = null;
+  employees = null;
+  companies = null;
+  numComps  = null;
+  selected  = false;
+  companyID = null;
+  clicked = false;
+  currentCompany = null;
 
- bridge = null;
+  bridge = null;
 
-private stuff(): void {
-  //let company = this.coms;
-  this.getEmployees(this.coms);
+private updateCountry(): void {
+  this.getEmployees(this.currentCompany);
  }
 
 
