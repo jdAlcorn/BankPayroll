@@ -5,6 +5,7 @@ import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
 
+
 /**
  * Generated class for the TestPage page.
  *
@@ -17,49 +18,72 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'payroll.html',
 })
 
+
 export class PayrollPage {
 
-  employees = null;
+  // Instance of the currently selected companies data
+
   companies = null;
   numComps  = null;
-  selected  = false;
-  companyID = null;
-  clicked = false;
+
+  selectedCompany = null;
+
   currentCompany = null;
+  employees = null;
+  payrollHistory = null;
 
   bridge = null;
 
-private updateCountry(): void {
-  this.getEmployees(this.currentCompany);
- }
+  private updateCompany(): void {
+    // Reset the previous company data variables
+    this.currentCompany = null;
+    this.employees = null;
+    this.payrollHistory = null;
+
+    // Fetch data for the new company
+    this.getEmployees(this.selectedCompany);
+    this.getPayrollHistory(this.selectedCompany);
+   }
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
-   this.bridge = bridge;
+    this.bridge = bridge;
 
- 	 console.log("Getting company data....");
-    bridge.getCompanies().subscribe(
-      (comps) => {
-        this.numComps = comps.length;
-        this.companies = comps;
-          }
-        )
+      bridge.getCompanies().subscribe (
+        (comps) => {
+          this.numComps = comps.length;
+          this.companies = comps;
+        }
+      )
     }
 
-    private getEmployees(id){
-     this.bridge.getEmployees(id).subscribe(
-          ( result ) => {
-            // Credentials accepted, user has been authenticated
-            this.employees = result;
-            console.log(this.employees);
-          },
-          ( err: HttpErrorResponse ) => {
-            if( err.status == 401 ) // Login credentials rejected
-              console.log("Access denied");
-            else // Some other error
-              console.log("An error has occurred: " + err.statusText);
-          }
-        )
-}
+    private getPayrollHistory(companyId){
+      this.bridge.getCompanyPayrollHistory(companyId).subscribe (
+         result => {
+           this.payrollHistory = result;
+         },
+        ( err: HttpErrorResponse ) => {
+          if( err.status == 401 ) // Login credentials rejected
+            console.log("Access denied");
+          else // Some other error
+            console.log("An error has occurred: " + err.statusText);
+        }
+      )
+    }
+
+    private getEmployees(companyId){
+     this.bridge.getEmployees(companyId).subscribe(
+        ( result ) => {
+          // Credentials accepted, user has been authenticated
+          this.employees = result;
+        },
+        ( err: HttpErrorResponse ) => {
+          if( err.status == 401 ) // Login credentials rejected
+            console.log("Access denied");
+          else // Some other error
+            console.log("An error has occurred: " + err.statusText);
+        }
+      )
+  }
 
 }

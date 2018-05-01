@@ -22,7 +22,7 @@
 <div *ngIf="numComps > 1">
   <ion-item>
     <ion-label>Company</ion-label>
-     <ion-select [(ngModel)]="currentCompany" (ionChange)="updateCountry();">
+     <ion-select [(ngModel)]="selectedCompany" (ionChange)="updateCompany();">
       <div *ngFor="let company of companies">
        <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
       </div>
