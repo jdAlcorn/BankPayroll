@@ -57,8 +57,13 @@ export class PayrollPage {
      } else if(payType == "BIWEEKLY"){
          lastStart = currentStart.remove(14, 'days');
      } else if(payType == "BIMONTHLY"){
-         lastStart = currentStart.remove(30, 'days');
+         let dayStart = currentStart.format('D');
+         //16 - 15
+         if(dayStart == 16) lastStart = currentStart.remove(15, 'days');
+         //1 -> 16
+         if(dayStart == 1) lastStart = currentStart.remove(1, 'month').add(14, 'days');
      }
+     return lastStart;
    }
 
 
