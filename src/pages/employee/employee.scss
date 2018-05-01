@@ -18,6 +18,7 @@ page-employee
 		border-right-style: none;
 		text-align: center;
 		color:white;
+		border-radius: 30px;
 	}
 ion-content {
 	background: url("../assets/imgs/background.jpg")  !important;
@@ -36,7 +37,8 @@ hr {
 
   .row {
     background-color:rgba(255,255,255, 0.3);
-    margin-bottom: 10px;
+		margin-bottom: 10px;
+		border-radius: 10px;
   }
 
 

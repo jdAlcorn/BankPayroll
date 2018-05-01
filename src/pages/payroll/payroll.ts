@@ -5,7 +5,7 @@ import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
 
-
+import * as moment from 'moment';
 /**
  * Generated class for the TestPage page.
  *
@@ -45,6 +45,25 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
+   }
+
+   private getLastPayPeriofd(){
+     let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
+     let lastStart  = null;
+     let payTime = this.currentCompany['payType'];
+
+     if(payType == "WEEKLY"){
+         lastStart = currentStart.remove(7, 'days');
+     } else if(payType == "BIWEEKLY"){
+         lastStart = currentStart.remove(14, 'days');
+     } else if(payType == "BIMONTHLY"){
+         let dayStart = currentStart.format('D');
+         //16 - 15
+         if(dayStart == 16) lastStart = currentStart.remove(15, 'days');
+         //1 -> 16
+         if(dayStart == 1) lastStart = currentStart.remove(1, 'month').add(14, 'days');
+     }
+     return lastStart;
    }
 
 
