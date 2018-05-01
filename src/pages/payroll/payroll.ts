@@ -52,7 +52,9 @@ export class PayrollPage {
    private getLastPayPeriod(){
      let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
      let lastStart  = null;
-     let payType = this.currentCompany['payType'];
+     let payType = this.currentCompany.payType;
+
+     alert(payType);
 
      if(payType == "WEEKLY"){
          lastStart = currentStart.subtract(7, 'days');
