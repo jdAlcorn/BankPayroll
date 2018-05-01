@@ -5,7 +5,7 @@ import {Events} from "ionic-angular";
 import {HttpErrorResponse} from "@angular/common/http";
 import { AlertController } from 'ionic-angular';
 
-import * as moment from 'moment';
+import * as moment from "moment";
 /**
  * Generated class for the TestPage page.
  *
