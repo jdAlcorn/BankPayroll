@@ -20,15 +20,15 @@
 <ion-content padding>
 
 <div *ngIf="numComps > 1">
-      <ion-item>
-        <ion-label>Company</ion-label>
-         <ion-select [(ngModel)]="coms" (ionChange)="stuff();">
-          <div *ngFor="let company of companies">
-           <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
-          </div>
-          </ion-select>
-      </ion-item>
-    </div>
+  <ion-item>
+    <ion-label>Company</ion-label>
+     <ion-select [(ngModel)]="selectedCompany" (ionChange)="updateCompany();">
+      <div *ngFor="let company of companies">
+       <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
+      </div>
+      </ion-select>
+  </ion-item>
+</div>
 
  <div *ngIf="employees">
 
@@ -48,5 +48,9 @@
        </ion-col>
    </ion-row>
  </div>
+
+  <div *ngIf="currentCompany">
+ <button ion-button (click)="submitShit();">Submit</button>
+</div>
 
 </ion-content>
