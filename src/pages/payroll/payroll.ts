@@ -27,17 +27,15 @@ export class PayrollPage {
  clicked = false;
 
  bridge = null;
- alertCtrl = null;
 
 private stuff(): void {
-  let company = this.coms;
-  this.getEmployees(company);
+  //let company = this.coms;
+  this.getEmployees(this.coms);
  }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
    this.bridge = bridge;
-   this.alertCtrl = alertCtrl;
 
  	 console.log("Getting company data....");
     bridge.getCompanies().subscribe(
