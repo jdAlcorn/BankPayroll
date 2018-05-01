@@ -55,15 +55,15 @@ export class PayrollPage {
      let payType = this.currentCompany['payType'];
 
      if(payType == "WEEKLY"){
-         lastStart = currentStart.remove(7, 'days');
+         lastStart = currentStart.subtract(7, 'days');
      } else if(payType == "BIWEEKLY"){
-         lastStart = currentStart.remove(14, 'days');
+         lastStart = currentStart.subtract(14, 'days');
      } else if(payType == "BIMONTHLY"){
          let dayStart = currentStart.format('D') as number;
          //16 - 15
-         if(dayStart == 16) lastStart = currentStart.remove(15, 'days');
+         if(dayStart == 16) lastStart = currentStart.subtract(15, 'days');
          //1 -> 16
-         if(dayStart == 1) lastStart = currentStart.remove(1, 'month').add(14, 'days');
+         if(dayStart == 1) lastStart = currentStart.subtract(1, 'month').add(14, 'days');
      }
      return lastStart;
    }
