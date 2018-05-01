@@ -119,8 +119,15 @@ export class Bridge {
   }
 
 
-  public submitCompanyPayroll( periodStart: string, companyId: string, payrollSubmission: Array<PayrollSubmission> ){
-    return this.http.post(AppSettings.API_ENDPOINT + `companies/${companyId}/submitPayroll`, payrollSubmission)
+  public submitCompanyPayroll( periodStart: string, companyId: string, payrollSubmission: Array<PayrollEntry> ){
+    this.payrollHistoryLastFetched = 0; // Expire the cache
+
+    const submission: PayrollSubmission = {
+      payPeriodStart: periodStart,
+      payroll: payrollSubmission
+    };
+
+    return this.http.post(AppSettings.API_ENDPOINT + `companies/${companyId}/submitPayroll`, submission)
   }
 
 
