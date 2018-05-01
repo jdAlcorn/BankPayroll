@@ -81,9 +81,14 @@ export class PayrollPage {
 
     private getCompany(companyId){
       this.bridge.getCompanies().subscribe(
-        result => (
-          this.currentCompany = result[companyId]
-        ),
+        result => {
+          for( let company of result ){
+            if( company.uID == companyId ){
+              this.currentCompany = company;
+              break;
+            }
+          }
+        },
         ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
             console.log("Access denied");
