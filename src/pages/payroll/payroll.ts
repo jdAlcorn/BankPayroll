@@ -31,6 +31,7 @@ export class PayrollPage {
   currentCompany = null;
   employees = null;
   payrollHistory = null;
+  lastPayStart = null;
 
 
   bridge = null;
@@ -46,11 +47,15 @@ export class PayrollPage {
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
 
-    alert(this.getLastPayPeriod());
+    
+   }
+
+   private submitShit(){
+
    }
 
    private getLastPayPeriod(){
-     let currentStart = moment(this.currentCompany['payPeriodStart'], "mm/DD/yyyy");
+     let currentStart = moment(this.currentCompany.payPeriodStart, "mm/DD/yyyy");
      let lastStart  = null;
      let payType = this.currentCompany.payType;
 
@@ -66,6 +71,8 @@ export class PayrollPage {
          if(dayStart == '16') lastStart = currentStart.subtract(15, 'days');
          //1 -> 16
          if(dayStart == '1') lastStart = currentStart.subtract(1, 'month').add(14, 'days');
+     } else {
+       console.log(payType);
      }
      return lastStart;
    }
@@ -102,6 +109,8 @@ export class PayrollPage {
           for( let company of result ){
             if( company.uID == companyId ){
               this.currentCompany = company;
+              alert(this.getLastPayPeriod());
+              this.lastPayStart = this.getLastPayPeriod();
               break;
             }
           }
