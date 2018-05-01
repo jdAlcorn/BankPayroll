@@ -26,7 +26,7 @@ export interface PayrollEntry {
   hours: number
 }
 
-interface PayrollHistory {
+export interface PayrollHistory {
   companyId: string,
   payPeriodStart: string,
   dateSubmitted: string,
