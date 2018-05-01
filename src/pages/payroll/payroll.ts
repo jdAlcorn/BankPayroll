@@ -25,6 +25,7 @@ export class PayrollPage {
  selected  = false;
  companyID = null;
  clicked = false;
+ coms = null;
 
  bridge = null;
 
