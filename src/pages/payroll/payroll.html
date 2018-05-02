@@ -30,6 +30,10 @@
   </ion-item>
 </div>
 
+<div class="submitted" *ngIf="submitted">
+  <h1>This payroll has already been submitted!</h1>
+</div>
+
  <div *ngIf="employees">
 
    <ion-row class="row header" style="margin-top:40px;">
