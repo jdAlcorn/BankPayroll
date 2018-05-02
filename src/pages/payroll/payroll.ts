@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
+import {HomePage} from "../home/home";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Bridge, PayrollEntry, PayrollHistory} from "../../providers/bridge";
 import {Events} from "ionic-angular";
@@ -39,6 +40,7 @@ export class PayrollPage {
   payrollData = {};
 
   bridge = null;
+  alertCtrl = null;
 
   private updateCompany(): void {
     // Reset the previous company data variables
@@ -54,6 +56,15 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
    }
+
+private confirmSubmit() {
+  let alert = this.alertCtrl.create({
+    title: 'Payroll Submitted!',
+    subTitle: 'You have successfully submitted payroll for ' + this.currentCompany.companyName,
+    buttons: ['Okay']
+  });
+  alert.present();
+}
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
@@ -106,9 +117,9 @@ export class PayrollPage {
    }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, bridge: Bridge, alertCtrl: AlertController) {
     this.bridge = bridge;
-
+    this.alertCtrl = alertCtrl;
       bridge.getCompanies().subscribe (
         (comps) => {
           this.numComps = comps.length;
@@ -171,12 +182,10 @@ export class PayrollPage {
 
 
     public submitPayroll(){
-
       let payroll = [];
-
       for( let employeeId in this.payrollData ){
         let hours = this.payrollData[employeeId];
-        if( hours > 300 || hours == null ){
+        if( hours > 300 || hours == null || hours < 0){
           alert("Invalid submission. Please enter 0 if an employee worked no hours and verify the number of hours entered for each employee.")
           return;
         }
@@ -195,6 +204,9 @@ export class PayrollPage {
     private submitPayrollToAPI( companyId: string , payrollStart: string, payroll: Array<PayrollEntry> ){
       this.bridge.submitCompanyPayroll(payrollStart, companyId, payroll).subscribe(
         result => {
+
+          this.confirmSubmit();
+          this.navCtrl.setRoot(HomePage);
           console.log("Payroll Submitted")
         },
         ( err: HttpErrorResponse ) => {

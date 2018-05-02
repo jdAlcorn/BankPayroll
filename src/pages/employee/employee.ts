@@ -21,6 +21,7 @@ export class EmployeePage {
   bridge = null;
   companies = null;
   numComps  = null;
+  currentCompany = null;
 
   selectedCompany = null;
 
