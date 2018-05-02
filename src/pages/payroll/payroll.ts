@@ -42,21 +42,24 @@ export class PayrollPage {
     // Reset the previous company data variables
     this.currentCompany = null;
     this.employees = null;
+    this.lastPayStart = null;
     this.payrollHistory = null;
     this.payrollData = {};
 
     // Fetch data for the new company
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
-    this.getPayrollHistory(this.selectedCompany);
-    this.getLastPayrollSubmission();
    }
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
      if( this.payrollHistory != null ) {
        for (let history of this.payrollHistory) {
-         if (ccID == history.companyId && this.lastPayStart.format("mm/DD/yyyy") == history.payPeriodStart) {
+         console.log(history.companyId)
+         console.log(ccID);
+         console.log(this.lastPayStart.format("mm/DD/yyyy"));
+         console.log(history.payPeriodStart);
+         if (ccID == history.companyId && this.lastPayStart.format("MM/DD/YYYY") == history.payPeriodStart) {
            this.flattenPayroll(history.payroll);
            break;
          }
@@ -79,7 +82,7 @@ export class PayrollPage {
    }
 
    private getLastPayPeriod(){
-     let currentStart = moment(this.currentCompany.payPeriodStart, "mm/DD/yyyy");
+     let currentStart = moment(this.currentCompany.payPeriodStart, "MM/DD/YYYYY");
 
      let lastStart  = null;
      let payType = this.currentCompany.payInterval;
@@ -117,6 +120,9 @@ export class PayrollPage {
       this.bridge.getCompanyPayrollHistory(companyId).subscribe (
          result => {
            this.payrollHistory = result;
+           this.lastPayStart = this.getLastPayPeriod();
+           this.getLastPayrollSubmission();
+
          },
         ( err: HttpErrorResponse ) => {
           if( err.status == 401 ) // Login credentials rejected
@@ -133,7 +139,7 @@ export class PayrollPage {
           for( let company of result ){
             if( company.uID == companyId ){
               this.currentCompany = company;
-              this.lastPayStart = this.getLastPayPeriod();
+              this.getPayrollHistory(companyId);
               break;
             }
           }
