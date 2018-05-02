@@ -34,7 +34,7 @@ export class PayrollPage {
   lastPayStart = null;
 
   // Model for current payroll data entered into the form
-  payrollData = {};
+  payrollData: Map<string, number>;
 
   bridge = null;
 
@@ -44,7 +44,7 @@ export class PayrollPage {
     this.employees = null;
     this.lastPayStart = null;
     this.payrollHistory = null;
-    this.payrollData = {};
+    this.payrollData = new Map<string,number>();
 
     // Fetch data for the new company
     this.getCompany( this.selectedCompany );
@@ -53,11 +53,12 @@ export class PayrollPage {
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
-     let lastpaystart = this.lastPayStart.format("MM/DD/YYYY")
+     let lastpaystart = this.lastPayStart.format("MM/DD/YYYY");
      if( this.payrollHistory != null ) {
        for (let history of this.payrollHistory) {
          if (ccID == history.companyId && lastpaystart == history.payPeriodStart) {
            this.flattenPayroll(history.payroll);
+
            break;
          }
        }
@@ -65,7 +66,7 @@ export class PayrollPage {
    }
 
    private flattenPayroll(payrollData){
-     let payroll = {};
+     let payroll = new Map<string, number>();
      for(let entry of payrollData){
        let id = entry.employeeId;
        let hours = entry.hours;
@@ -74,9 +75,6 @@ export class PayrollPage {
      this.payrollData = payroll;
    }
 
-   private submitShit(){
-
-   }
 
    private getLastPayPeriod(){
 
@@ -166,19 +164,44 @@ export class PayrollPage {
       )
     }
 
-      private submitPayroll( companyId: string , payrollStart: string, payroll: Array<PayrollEntry> ){
-        this.bridge.submitCompanyPayroll(payrollStart, companyId, payroll).subscribe(
-          result => {
-            console.log("Payroll Submitted")
-          },
-          ( err: HttpErrorResponse ) => {
-            if( err.status == 401 ) // Login credentials rejected
-              console.log("Access denied");
-            else // Some other error
-              console.log("An error has occurred: " + err.statusText);
-          }
-        )
-      }
+
+    public submitPayroll(){
+
+      let payroll = [];
+
+      console.log(this.payrollData);
+      this.payrollData.forEach( (hours: number, employeeId: string)  => {
+        if( hours > 120 || hours == null ){
+          alert("Invalid submission. Please enter 0 if an employee worked no hours and verify the number of hours entered for each employee.")
+          return;
+        }
+        console.log(employeeId);
+        console.log(hours);
+
+        payroll.push( {
+            employeeId: employeeId,
+            hours: hours
+        })
+      })
+      console.log(payroll);
+
+    }
+
+
+
+    private submitPayrollToAPI( companyId: string , payrollStart: string, payroll: Array<PayrollEntry> ){
+      this.bridge.submitCompanyPayroll(payrollStart, companyId, payroll).subscribe(
+        result => {
+          console.log("Payroll Submitted")
+        },
+        ( err: HttpErrorResponse ) => {
+          if( err.status == 401 ) // Login credentials rejected
+            console.log("Access denied");
+          else // Some other error
+            console.log("An error has occurred: " + err.statusText);
+        }
+      )
+    }
 
 
 }
