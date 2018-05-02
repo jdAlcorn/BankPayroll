@@ -75,7 +75,7 @@ export class PayrollPage {
    }
 
    private submitShit(){
-
+     alert("Im submittins");
    }
 
    private getLastPayPeriod(){
