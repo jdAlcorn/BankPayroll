@@ -36,7 +36,7 @@ export class PayrollPage {
   submitted = false;
 
   // Model for current payroll data entered into the form
-  payrollData: Map<string, number>;
+  payrollData = {};
 
   bridge = null;
 
@@ -48,7 +48,7 @@ export class PayrollPage {
     this.submitted=false;
     this.payrollHistory = null;
     this.submitted = false;
-    this.payrollData = new Map<string,number>();
+    this.payrollData = {};
 
     // Fetch data for the new company
     this.getCompany( this.selectedCompany );
@@ -71,7 +71,7 @@ export class PayrollPage {
    }
 
    private flattenPayroll(payrollData){
-     let payroll = new Map<string, number>();
+     let payroll = {};
      for(let entry of payrollData){
        let id = entry.employeeId;
        let hours = entry.hours;
@@ -79,7 +79,7 @@ export class PayrollPage {
      }
      this.payrollData = payroll;
    }
-   
+
 
    private getLastPayPeriod(){
 
@@ -174,22 +174,20 @@ export class PayrollPage {
 
       let payroll = [];
 
-      console.log(this.payrollData);
-      this.payrollData.forEach( (hours: number, employeeId: string)  => {
-        if( hours > 120 || hours == null ){
+      for( let employeeId in this.payrollData ){
+        let hours = this.payrollData[employeeId];
+        if( hours > 300 || hours == null ){
           alert("Invalid submission. Please enter 0 if an employee worked no hours and verify the number of hours entered for each employee.")
           return;
         }
-        console.log(employeeId);
-        console.log(hours);
 
         payroll.push( {
-            employeeId: employeeId,
-            hours: hours
+          employeeId: employeeId,
+          hours: hours
         })
-      })
-      console.log(payroll);
+      }
 
+      this.submitPayrollToAPI( this.selectedCompany, this.lastPayStart.format("MM/DD/YYYY"), payroll);
     }
 
 
