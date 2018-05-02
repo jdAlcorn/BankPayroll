@@ -21,6 +21,17 @@
 
 <ion-content class="employee-page" padding>
 
+<div *ngIf="numComps > 1">
+  <ion-item>
+    <ion-label>Company</ion-label>
+     <ion-select [(ngModel)]="selectedCompany" (ionChange)="updateCompany();">
+      <div *ngFor="let company of companies">
+       <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
+      </div>
+      </ion-select>
+  </ion-item>
+</div>
+
  <div *ngIf="employees">
 
 

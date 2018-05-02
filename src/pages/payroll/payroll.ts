@@ -33,6 +33,8 @@ export class PayrollPage {
   payrollHistory: Array<PayrollHistory>;
   lastPayStart = null;
 
+  submitted = false;
+
   // Model for current payroll data entered into the form
   payrollData: Map<string, number>;
 
@@ -43,7 +45,9 @@ export class PayrollPage {
     this.currentCompany = null;
     this.employees = null;
     this.lastPayStart = null;
+    this.submitted=false;
     this.payrollHistory = null;
+    this.submitted = false;
     this.payrollData = new Map<string,number>();
 
     // Fetch data for the new company
@@ -54,11 +58,12 @@ export class PayrollPage {
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
      let lastpaystart = this.lastPayStart.format("MM/DD/YYYY");
+
      if( this.payrollHistory != null ) {
        for (let history of this.payrollHistory) {
          if (ccID == history.companyId && lastpaystart == history.payPeriodStart) {
            this.flattenPayroll(history.payroll);
-
+           this.submitted = true;
            break;
          }
        }
@@ -74,7 +79,7 @@ export class PayrollPage {
      }
      this.payrollData = payroll;
    }
-
+   
 
    private getLastPayPeriod(){
 
