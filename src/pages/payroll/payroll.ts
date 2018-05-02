@@ -53,13 +53,10 @@ export class PayrollPage {
 
    private getLastPayrollSubmission(){
      let ccID = this.currentCompany.uID;
+     let lastpaystart = this.lastPayStart.format("MM/DD/YYYY")
      if( this.payrollHistory != null ) {
        for (let history of this.payrollHistory) {
-         console.log(history.companyId)
-         console.log(ccID);
-         console.log(this.lastPayStart.format("mm/DD/yyyy"));
-         console.log(history.payPeriodStart);
-         if (ccID == history.companyId && this.lastPayStart.format("MM/DD/YYYY") == history.payPeriodStart) {
+         if (ccID == history.companyId && lastpaystart == history.payPeriodStart) {
            this.flattenPayroll(history.payroll);
            break;
          }
@@ -82,7 +79,8 @@ export class PayrollPage {
    }
 
    private getLastPayPeriod(){
-     let currentStart = moment(this.currentCompany.payPeriodStart, "MM/DD/YYYYY");
+
+     let currentStart = moment(this.currentCompany.payPeriodStart, "MM/DD/YYYY");
 
      let lastStart  = null;
      let payType = this.currentCompany.payInterval;
