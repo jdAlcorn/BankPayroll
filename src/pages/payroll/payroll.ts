@@ -49,12 +49,7 @@ export class PayrollPage {
     this.getCompany( this.selectedCompany );
     this.getEmployees(this.selectedCompany);
     this.getPayrollHistory(this.selectedCompany);
-    this.getLastPayroll();
-   }
-
-
-   private getLastPayroll(){
-     this.getLastPayrollSubmission();
+    this.getLastPayrollSubmission();
    }
 
    private getLastPayrollSubmission(){
