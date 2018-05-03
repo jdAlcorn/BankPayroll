@@ -10,7 +10,6 @@ import {HomePage} from "../pages/home/home";
 import {PayrollPage} from "../pages/payroll/payroll";
 import {EmployeePage} from "../pages/employee/employee";
 import {ContactPage} from "../pages/contact/contact";
-import {AboutPage} from "../pages/about/about";
 import {CompaniesPage} from "../pages/companies/companies";
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -34,7 +33,6 @@ import {Bridge} from '../providers/bridge';
     PayrollPage,
     EmployeePage,
     ContactPage,
-    AboutPage,
     CompaniesPage
   ],
   imports: [
@@ -46,7 +44,6 @@ import {Bridge} from '../providers/bridge';
     IonicPageModule.forChild(PayrollPage),
     IonicPageModule.forChild(EmployeePage),
     IonicPageModule.forChild(ContactPage),
-    IonicPageModule.forChild(AboutPage),
     IonicPageModule.forChild(CompaniesPage)
   ],
   bootstrap: [IonicApp],
@@ -57,7 +54,6 @@ import {Bridge} from '../providers/bridge';
     PayrollPage,
     EmployeePage,
     ContactPage,
-    AboutPage,
     CompaniesPage
   ],
   providers: [
