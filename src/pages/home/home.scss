@@ -10,8 +10,14 @@ page-home,
   .header .col {
 
     color:white;
-
   }
+
+  .dashboard-button{
+    font-size: 24px !important;
+    background-color: #343434 !important;
+    color: #f1f1f5 !important;
+  }
+
   .col {
     border: solid 0px;
     border-bottom-style: none;
@@ -43,7 +49,7 @@ page-home,
   }
 
   .row {
-    background-color:rgba(255,255,255, 0.3);
+    background-color:rgba(40,40,40, 0.3);
     margin-bottom: 10px;
   }
 

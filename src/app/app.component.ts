@@ -25,7 +25,6 @@ export class MyApp {
   public goEmployeePage(){ this.nav.setRoot(EmployeePage); }
   public goContact(){ this.nav.setRoot(ContactPage)}
   public goPayroll(){ this.nav.setRoot(PayrollPage); }
-  public goCompanies(){ this.nav.setRoot(CompaniesPage); }
   public goLogout(){ this.events.publish('user:logout'); }
 
   constructor( platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private events: Events) {

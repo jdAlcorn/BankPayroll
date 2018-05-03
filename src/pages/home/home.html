@@ -17,20 +17,31 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-10 offset-1>
-        <h3>Hello {{currentUser.firstName.charAt(0).toUpperCase() + currentUser.firstName.slice(1)}},</h3>
+      <ion-col col-10 offset-1 style="text-align:center;">
+        <h3>Welcome back {{currentUser.firstName.charAt(0).toUpperCase() + currentUser.firstName.slice(1)}}!</h3><br>
+        <b>What would you like to do?</b>
+        <hr>
       </ion-col>
+    <br>
+      <ion-col col-12>
+        <button class="dashboard-button" (click)="goPayroll();" ion-item> <ion-icon name='clock'></ion-icon> Enter Payroll</button>
+
+        <button class="dashboard-button" (click)="goEmployeePage();" ion-item> <ion-icon name='people'></ion-icon> View Employee Info</button>
+
+        <button class="dashboard-button" (click)="goContact();" ion-item> <ion-icon name='call'></ion-icon> Contact us</button>
+      </ion-col>
+
     </ion-row>
 
-    <h3>Your Companies</h3>
+    <!--<h3>Your Companies</h3>-->
 
-    <ion-row *ngFor="let company of companies">
-      <ion-col col-6>
-        {{company.companyName}}
-      </ion-col>
-      <ion-col col-6>
+    <!--<ion-row *ngFor="let company of companies">-->
+      <!--<ion-col col-6>-->
+        <!--{{company.companyName}}-->
+      <!--</ion-col>-->
+      <!--<ion-col col-6>-->
 
-      </ion-col>
-    </ion-row>
+      <!--</ion-col>-->
+    <!--</ion-row>-->
   </ion-grid>
 </ion-content>
