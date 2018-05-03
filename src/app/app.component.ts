@@ -8,8 +8,6 @@ import * as moment from 'moment';
 import {LoginPage} from "../pages/login/login";
 import {HomePage} from "../pages/home/home";
 import {EmployeePage} from "../pages/employee/employee";
-import {AboutPage} from "../pages/about/about";
-import {CompaniesPage} from "../pages/companies/companies";
 import {ContactPage} from "../pages/contact/contact";
 import {PayrollPage} from "../pages/payroll/payroll";
 
