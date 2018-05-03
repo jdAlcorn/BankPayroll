@@ -122,12 +122,20 @@ export class Bridge {
   public submitCompanyPayroll( periodStart: string, companyId: string, payrollSubmission: Array<PayrollEntry> ){
     this.payrollHistoryLastFetched = 0; // Expire the cache
 
+    // Convert each hours entry to a number because its being passed as a string for some reason despite the interface specifying it as a number
+    payrollSubmission.forEach( submission => submission.hours = +submission.hours );
+
     const submission: PayrollSubmission = {
       payPeriodStart: periodStart,
       payroll: payrollSubmission
     };
 
-    return this.http.post(AppSettings.API_ENDPOINT + `companies/${companyId}/submitPayroll`, submission)
+    return this.http.post<string>(
+      AppSettings.API_ENDPOINT + `/companies/${companyId}/submitPayroll`,
+      submission,
+      {headers:{'Content-Type': 'application/json'}})
+
+
   }
 
 

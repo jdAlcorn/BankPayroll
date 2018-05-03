@@ -194,7 +194,7 @@ export class PayrollPage {
 
     private submitPayrollToAPI( companyId: string , payrollStart: string, payroll: Array<PayrollEntry> ){
       this.bridge.submitCompanyPayroll(payrollStart, companyId, payroll).subscribe(
-        result => {
+        response => {
           console.log("Payroll Submitted")
         },
         ( err: HttpErrorResponse ) => {
