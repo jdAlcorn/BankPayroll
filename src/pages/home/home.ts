@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {App, NavController} from 'ionic-angular';
 import {Bridge} from "../../providers/bridge";
 
 import {AuthService} from "../../providers/auth-service";

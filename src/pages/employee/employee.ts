@@ -10,7 +10,6 @@ import {HttpErrorResponse} from "@angular/common/http";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-employee',
   templateUrl: 'employee.html',
