@@ -98,6 +98,7 @@ export class Bridge {
 
 
   private getPayrollHistoryFromAPI(companyId: string) {
+   
     // Make the Http request and map the response so we can initialize our user object and extract the token
     return this.http.get<Array<PayrollHistory>>(AppSettings.API_ENDPOINT + `/companies/${companyId}/payrollHistory` )
       .map( payrollHistory =>  {
@@ -108,6 +109,7 @@ export class Bridge {
   }
 
   public getCompanyPayrollHistory(companyId: string) {
+    
     // Check if we have unexpired data in the cache or if we need to fetch new data from the api instead
     if( this.payrollHistory[companyId] && this.companyDataLastFetched + (AppSettings.CACHE_TTL * 1000) > Date.now() )
       return Observable.create(observer => {
@@ -121,10 +123,10 @@ export class Bridge {
 
   public submitCompanyPayroll( periodStart: string, companyId: string, payrollSubmission: Array<PayrollEntry> ){
     this.payrollHistoryLastFetched = 0; // Expire the cache
-
+    this.payrollHistory[companyId] = null;
     // Convert each hours entry to a number because its being passed as a string for some reason despite the interface specifying it as a number
     payrollSubmission.forEach( submission => submission.hours = +submission.hours );
-
+    console.log(this.companyDataLastFetched);
     const submission: PayrollSubmission = {
       payPeriodStart: periodStart,
       payroll: payrollSubmission
