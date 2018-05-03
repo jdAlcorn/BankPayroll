@@ -214,8 +214,11 @@ private confirmSubmit() {
             this.confirmSubmit();
             this.navCtrl.setRoot(HomePage);
           }
+          else if( err.status == 410 ){
+            alert("The deadline for updating this payroll period has passed. If you need to make changes please contact us.")
+          }
           else // Some other error
-            console.log("An error has occurred: " + err.statusText);
+            console.log("An error has occurred: " + err.message);
         }
       )
     }

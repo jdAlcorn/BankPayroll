@@ -14,8 +14,11 @@ page-payroll,
   }
 
   .submitted {
-  background-color: rgba(0, 222, 33, .5);
-  font-size: 12px;
+    ion-row{
+      background-color: rgba(0, 222, 33, .3);
+    }
+
+    font-size: 14px;
   }
 
   .col {

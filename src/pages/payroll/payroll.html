@@ -31,7 +31,12 @@
 </div>
 
 <div class="submitted" *ngIf="submitted">
-  <h1>This payroll has already been submitted!</h1>
+  <br>
+  <ion-row>
+    <ion-col col-12>
+      Payroll for this period has already been submitted!
+    </ion-col>
+  </ion-row>
 </div>
 
  <div *ngIf="employees">
@@ -44,16 +49,16 @@
    <br>
 
    <ion-row *ngFor="let employee of employees">
-       <ion-col class="pull-left" style="margin-top:10px;" col-10 *ngIf="employee.payType == 'HOURLY'">
+       <ion-col class="pull-left" style="margin-top:10px;" col-9 *ngIf="employee.payType == 'HOURLY'">
          <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
        </ion-col>
-       <ion-col class="pull-right" col-2 *ngIf="employee.payType == 'HOURLY'">
-         <ion-input type="number" step=".25" [(ngModel)]="payrollData[employee.uID]" style="min-width:100%;text-align: end;"></ion-input>
+       <ion-col class="pull-right" col-3 *ngIf="employee.payType == 'HOURLY'">
+         <ion-input type="number" step=".25" [(ngModel)]="payrollData[employee.uID]" style="min-width:100%;text-align: left;"></ion-input>
        </ion-col>
    </ion-row>
  </div>
 
-  <div *ngIf="currentCompany">
+  <div *ngIf="currentCompany" class="pull-right">
  <button ion-button (click)="submitPayroll();">Submit</button>
 </div>
 
