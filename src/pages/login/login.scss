@@ -1,5 +1,12 @@
 page-login,
 .login {
+  ion-content {
+    background: url("../assets/imgs/background.jpg") !important;
+
+    background-size: cover !important;
+  };
+
+
   background-color: #fff;
   &::after {
     content: "";
@@ -30,6 +37,22 @@ page-login,
         background-size: 100%;
       }
 
+      ion-label{
+        ion-icon{
+          font-size: 2rem;
+          padding-right: 0px;
+        }
+      }
+
+      .button-inner {
+        font-weight: bolder;
+        ion-icon{
+          font-weight: bolder;
+        }
+      }
+
+
+
       .list-form {
         padding: 0;
         margin-bottom: 0;
@@ -37,6 +60,7 @@ page-login,
         ion-item {
           background: none;
           padding: 0;
+          font-weight: bolder;
 
           &:first-child {
             border-top: none;

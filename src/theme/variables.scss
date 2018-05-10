@@ -7,8 +7,13 @@
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 
-$text-color: #4c6df9;
+$text-color: #171717;
 $background-color: #fff;
+$toolbar-background: rgb(33, 59, 157);
+
+$toolbar-ios-title-font-size: 2.5rem;
+$toolbar-md-title-font-size: 2.5rem;
+$toolbar-wp-title-font-size: 2.5rem;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -24,7 +29,8 @@ $colors: (
   success: #a1ffa5,
   danger: #f53d3d,
   light: #75C4FD,
-  dark: #0039a2
+  dark: #0039a2,
+  headerBackground: #fff
 );
 
 // App Theme

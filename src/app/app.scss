@@ -3,9 +3,54 @@
 // --------------------------------------------------
 
 ion-content {
-  background: url("../assets/imgs/background.jpg") !important;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+}
+
+
+.alert-ios .alert-button {
+  color: #000000 !important;
+}
+
+.alert-radio-label {
+  color: #000000 !important;
+}
+
+.alert-radio-icon {
+  color: #000000 !important;
+}
+
+.alert-md .alert-button{
+  color: #000000 !important;
+}
+
+.alert-ios [aria-checked=true] .alert-radio-label {
+  color: #425aff !important;
+}
+.alert-ios [aria-checked=true] .alert-radio-inner {
+  border-color: #000000 !important;
+}
+
+.alert-md [aria-checked=true] .alert-radio-icon {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+
+.sidebar {
+  background-color: #343434;
+  overflow-y: hidden !important;
+  ion-list, .list-ios, .list-md {
+    overflow-y: hidden !important;
+  }
+}
+
+.menu-content {
+  background-color: #343434;
+  font-weight: bold;
+  color: ghostwhite;
+  ion-icon {
+    padding-right:1rem;
+  }
 }
 
 // global styles
@@ -276,17 +321,7 @@ ion-navbar.no-border {
 // Toolbar
 // transparent nav bar
 .toolbar {
-  &.nav-transparent {
-    .toolbar-background {
-      background-color: rgba(86, 61, 124, .65);
-    }
-  }
-  .toolbar-title {
-    img {
-      vertical-align: sub;
-      border-radius: 10%;
-    }
-  }
+
 }
 
 

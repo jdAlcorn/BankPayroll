@@ -1,0 +1,65 @@
+<!--
+  Generated template for the TestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Enter Payroll
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<div *ngIf="numComps > 1">
+  <ion-item>
+    <ion-label>Company</ion-label>
+     <ion-select [(ngModel)]="selectedCompany" (ionChange)="updateCompany();">
+      <div *ngFor="let company of companies">
+       <ion-option value={{company.uID}}>{{company.companyName}}</ion-option>
+      </div>
+      </ion-select>
+  </ion-item>
+</div>
+
+<div class="submitted" *ngIf="submitted">
+  <br>
+  <ion-row>
+    <ion-col col-12>
+      Payroll for this period has already been submitted!
+    </ion-col>
+  </ion-row>
+</div>
+
+ <div *ngIf="employees">
+
+   <ion-row class="row header" style="margin-top:40px;">
+     <ion-col col-6  style="margin-top:10px;"><h3>Employee Name</h3></ion-col>
+     <ion-col col-6  style="margin-top:10px;" text-right ><h3>Hours Worked</h3></ion-col>
+   </ion-row>
+   <hr>
+   <br>
+
+   <ion-row *ngFor="let employee of employees">
+       <ion-col class="pull-left" style="margin-top:10px;" col-9 *ngIf="employee.payType == 'HOURLY'">
+         <h4><strong>{{employee.lastName}}, {{employee.firstName}}</strong></h4>
+       </ion-col>
+       <ion-col class="pull-right" col-3 *ngIf="employee.payType == 'HOURLY'">
+         <ion-input type="number" step=".25" [(ngModel)]="payrollData[employee.uID]" style="min-width:100%;text-align: left;"></ion-input>
+       </ion-col>
+   </ion-row>
+ </div>
+
+  <div *ngIf="currentCompany" class="pull-right">
+ <button ion-button (click)="submitPayroll();">Submit</button>
+</div>
+
+</ion-content>

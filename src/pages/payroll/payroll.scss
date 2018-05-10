@@ -1,5 +1,5 @@
-page-home,
-.home {
+page-payroll,
+.payroll {
 
   .header{
 
@@ -10,12 +10,15 @@ page-home,
   .header .col {
 
     color:white;
+
   }
 
-  .dashboard-button{
-    font-size: 24px !important;
-    background-color: #343434 !important;
-    color: #f1f1f5 !important;
+  .submitted {
+    ion-row{
+      background-color: rgba(0, 222, 33, .3);
+    }
+
+    font-size: 14px;
   }
 
   .col {
@@ -33,7 +36,10 @@ page-home,
 		color:white;
 
 	}
-
+.row-header
+{
+margin-top: 120px;
+}
 
 	hr {
 		border: 0;
@@ -51,9 +57,7 @@ page-home,
   .row {
     background-color:rgba(40,40,40, 0.3);
     margin-bottom: 10px;
+    border-radius: 10px;
   }
 
 }
-
-
-
